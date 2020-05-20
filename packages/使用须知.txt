@@ -1,0 +1,17 @@
+需要在vue.config.js中配置如下，theme.scss是主题样式
+chainWebpack: config => {
+    //theme.scss和mixins.scss作为公共样式
+    const oneOfsMap = config.module.rule('scss').oneOfs.store
+    oneOfsMap.forEach(item => {
+        item
+            .use('sass-resources-loader')
+            .loader('sass-resources-loader')
+            .options({
+                resources: [
+                    './src/config/theme.scss',
+                    './src/utils/css/mixins.scss'
+                ]
+            })
+            .end()
+    })
+}
