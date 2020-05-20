@@ -1,8 +1,18 @@
 import ComponentFadeOutIn from './ComponentFadeOutIn'
 import MyAudio from './MyAudio'
+import CollapseTransition from "./CollapseTransition";
+import MyFlowChart from "./MyFlowChart";
+import MyFlvVideo from "./MyFlvVideo";
+import MyQRCode from "./MyQRCode";
+import MySaveToPDF from "./MySaveToPDF";
 const components = [
   ComponentFadeOutIn,
-  MyAudio
+  MyAudio,
+  CollapseTransition,
+  MyFlowChart,
+  MyFlvVideo,
+  MyQRCode,
+  MySaveToPDF
 ]
 const install = function (Vue, opts = {}) {
   components.map(component => {
@@ -16,5 +26,10 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   ComponentFadeOutIn,
-  MyAudio
+  MyAudio,
+  CollapseTransition,
+  MyFlowChart,
+  MyFlvVideo,
+  MyQRCode,
+  MySaveToPDF
 }

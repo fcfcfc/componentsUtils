@@ -1,7 +1,8 @@
 {
-  "name": "component-utils-common",
-  "version": "1.0.3",
+  "name": "vue-component-utils",
+  "version": "1.0.2",
   "private": false,
+  "description": "封装的vue组件和可自定义的elementui组件",
   "main": "lib/component-utils-common.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -19,6 +19,13 @@ module.exports = {
     'space-before-function-paren': 'off',
     'spaced-comment': 'off',
     'eol-last': 'off',
-    'keyword-spacing': 'off'
+    'keyword-spacing': 'off',
+    'prefer-const': 'off',
+    'no-multi-spaces': 'off',
+    'one-var': 'off',
+    'comma-spacing': 'off',
+    'no-mixed-operators': 'off',
+    'comma-dangle': 'off',
+    'no-return-assign': 'off'
   }
 }

@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    11
-    <my-audio :if-hide="false"/>
+    <my-flv-video/>
   </div>
 </template>
 
