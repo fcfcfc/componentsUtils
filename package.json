@@ -1,18 +1,24 @@
 {
   "name": "vue-component-utils",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "private": false,
   "description": "封装的vue组件和可自定义的elementui组件",
-  "main": "lib/component-utils-common.umd.min.js",
+  "main": "lib/index/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "lib": "vue-cli-service build --target lib --name component-utils-common --dest lib packages/index.js",
     "unPublish": "npm unpublish --force",
-    "publish": "npm publish"
+    "publish": "npm publish",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@antv/g6": "^3.4.10",
     "core-js": "^3.6.4",
-    "vue": "^2.6.11"
+    "flv.js": "^1.5.0",
+    "html2canvas": "^1.0.0-rc.5",
+    "jspdf": "^1.5.3",
+    "scss-flex": "^1.8.1",
+    "vue": "^2.6.11",
+    "vue-qr": "^2.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.3.0",
