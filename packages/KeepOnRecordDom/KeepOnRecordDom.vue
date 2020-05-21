@@ -11,12 +11,14 @@
 </template>
 
 <script>
+  require('scss-flex')
     export default {
         name: "KeepOnRecord"
     }
 </script>
 
 <style lang="scss" scoped>
+    @import "css/mixins";
     .keepOnRecord {
         @include myBorder(top, #EAEAEA);
         width: 100%;
