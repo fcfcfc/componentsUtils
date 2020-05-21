@@ -5,6 +5,7 @@ import MyFlowChart from "./MyFlowChart";
 import MyFlvVideo from "./MyFlvVideo";
 import MyQRCode from "./MyQRCode";
 import MySaveToPDF from "./MySaveToPDF";
+import MyRate from "./MyRate";
 const components = [
   ComponentFadeOutIn,
   MyAudio,
@@ -12,7 +13,8 @@ const components = [
   MyFlowChart,
   MyFlvVideo,
   MyQRCode,
-  MySaveToPDF
+  MySaveToPDF,
+  MyRate
 ]
 const install = function (Vue, opts = {}) {
   components.map(component => {
@@ -31,5 +33,6 @@ export default {
   MyFlowChart,
   MyFlvVideo,
   MyQRCode,
-  MySaveToPDF
+  MySaveToPDF,
+  MyRate
 }

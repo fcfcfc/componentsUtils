@@ -1,6 +1,6 @@
 {
   "name": "vue-component-utils",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": false,
   "description": "封装的vue组件和可自定义的elementui组件",
   "main": "lib/index/index.js",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@antv/g6": "^3.4.10",
     "core-js": "^3.6.4",
+    "element-ui": "^2.13.2",
     "flv.js": "^1.5.0",
     "html2canvas": "^1.0.0-rc.5",
     "jspdf": "^1.5.3",
@@ -26,6 +27,7 @@
     "@vue/cli-service": "^4.3.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",

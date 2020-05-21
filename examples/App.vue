@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <my-flv-video/>
+    <my-rate style="height: 100px;width: 500px;" :value="5"/>
   </div>
 </template>
 
 <script>
+  require('../lib/MyRate/style.css')
 export default {
   name: 'App',
   components: {
