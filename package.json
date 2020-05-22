@@ -16,9 +16,13 @@
     "element-ui": "^2.13.2",
     "flv.js": "^1.5.0",
     "html2canvas": "^1.0.0-rc.5",
+    "js-utils-common": "^1.0.9",
     "jspdf": "^1.5.3",
     "scss-flex": "^1.8.1",
+    "swiper": "^5.4.1",
+    "video.js": "^7.7.6",
     "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-qr": "^2.2.1"
   },
   "devDependencies": {

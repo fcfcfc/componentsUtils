@@ -3,7 +3,9 @@ module.exports = {
   env: {
     node: true
   },
-  parserOptions: {
-    parser: 'babel-eslint'
+  parser: "vue-eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
   }
 }
