@@ -20,7 +20,7 @@
                      square-inner-width="6px"
                      square-inner-height="10px"/>
         <div>7.MyDatePickerRange</div>
-        <my-date-picker-range/>
+        <my-date-picker-range input-hover-border-color="red"/>
         <div>8.MyFlowChart</div>
         <my-flow-chart/>
         <div>9.MyFlvVideo</div>
@@ -38,14 +38,29 @@
         <div>15.MySwiper</div>
         <my-swiper/>
         <div>16.MyVideo</div>
-        <MyVideo/>
+        <my-video/>
+        <div>17.MyCascader</div>
+        <my-cascader :if-disable="true" input-hover-border-color="#000"/>
+        <div>18.MyDialog</div>
+        <my-dialog :if-show="false" title="MyDialog" :closeFn="()=>{}">
+            <div>18.MyDialog</div>
+        </my-dialog>
+        <div>19.MyInput</div>
+        <my-input :if-disabled="true" input-hover-border-color="red"/>
+        <div>20.MyPagination</div>
+        <my-pagination :total="25" select-active-item-color="yellow" pagination-bgc-active-color="blue" pagination-border-hover-color="red"/>
+        <div>21.MySelect</div>
+        <my-select input-hover-border-color="#000" select-active-item-color="red" :options="[{value:1,label:123123}]"/>
+        <div>22.MyUpload</div>
+        <my-upload color="red" background-color-hover="green" background-color="gray"/>
     </div>
 </template>
 
 <script>
+    import MyUpload from "../packages/MyUpload/MyUpload";
     export default {
         name: 'App',
-        components: {},
+        components: {MyUpload},
         data() {
             return {
                 notUsed: false

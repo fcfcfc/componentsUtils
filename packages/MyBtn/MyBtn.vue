@@ -21,8 +21,6 @@
      */
     /**
      * 该组件的配置项
-     * $btnHoverBackgroundColor:主题背景颜色（主题色）
-     * $btnBackgroundColor:hover时的主题背景颜色（主题色）
      * color:自定义按钮文字颜色
      * backgroundColor:自定义按钮背景颜色
      * backgroundColorHover:自定义按钮在hover时的背景颜色
@@ -42,8 +40,6 @@
     /**
      * 组件的方法（无）
      */
-    import Main from "js-utils-common";
-
     /**
      * 需要注意的事项（无）
      */

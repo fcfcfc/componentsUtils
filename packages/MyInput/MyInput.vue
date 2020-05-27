@@ -1,8 +1,5 @@
 <template>
-    <div class="myInput" :class="{
-                                    'disableBorder': ifDisableBorder,
-                                    'disableClearIcon': ifDisableClearIcon
-                                 }">
+    <div class="myInput" :class="newClass">
         <el-input
                 :autocomplete="autoComplete"
                 :style="{
@@ -37,7 +34,6 @@
      */
     /**
      * 该组件的配置项
-     * $inputHoverBorderColor:input在hover时的border颜色
      * initValue:初始值
      * ifDisabled:是否禁用,默认值为false
      * placeholder:input提示信息
@@ -57,6 +53,7 @@
      * ifDisableClearIcon:是否禁用删除小图标，默认显示
      * textareaUseHeight:textarea也使用height参数控制高度，默认不使用
      * backgroundColor:自定义背景颜色，默认是#FFFFFF
+     * inputHoverBorderColor:输入框在hover时的边框颜色
      * ifAutofocus:原生属性，自动获取焦点
      */
     /**
@@ -74,8 +71,12 @@
     /**
      * 需要注意的事项（无）
      */
+    import { Input } from "element-ui"
     export default {
         name: "MyInput",
+        components: {
+            ElInput: Input
+        },
         props: {
             autoComplete: {
                 type: String,
@@ -140,6 +141,10 @@
                 type: String,
                 default: '48px'
             },
+            inputHoverBorderColor: {
+                type: String,
+                default: ''
+            },
             fontColor: {
                 type: String,
                 default: ''
@@ -150,6 +155,13 @@
             return {
                 input: this.initValue,
                 info: this.extraInfo
+            }
+        },
+        computed: {
+            newClass() {
+                let inputHoverBorderColor = (this.inputHoverBorderColor || '').replace(/#/g, '');
+                if(inputHoverBorderColor) inputHoverBorderColor = 'a_' + inputHoverBorderColor;
+                return ` ${inputHoverBorderColor} ${this.ifDisableBorder ? 'disableBorder': ''} ${this.ifDisableClearIcon ? 'disableClearIcon': ''}`
             }
         },
         mounted() {
@@ -163,8 +175,26 @@
             if(this.paddingRight) myInputDom.style.paddingRight = this.paddingRight;
             if(this.fontColor) myInputDom.style.color = this.fontColor;
             myInputDom.style.backgroundColor = this.backgroundColor;
+            this.setCssRules();
         },
         methods: {
+            setCssRules() {
+                let length = document.styleSheets.length;
+                let inputHoverBorderColor = (this.inputHoverBorderColor || '').replace(/#/g, '');
+                let inputHoverBorderColorRule = '';
+                if(inputHoverBorderColor) {
+                    inputHoverBorderColorRule = `.myInput.a_${inputHoverBorderColor} .el-textarea > textarea:hover, .myInput.a_${inputHoverBorderColor} .el-textarea.is-disabled .el-input__inner:hover, .myInput.a_${inputHoverBorderColor} .el-textarea.is-disabled .el-textarea__inner:hover, .myInput.a_${inputHoverBorderColor} .el-input.is-disabled .el-input__inner:hover, .myInput.a_${inputHoverBorderColor} .el-input.is-disabled .el-textarea__inner:hover, .myInput.a_${inputHoverBorderColor} .el-input > input:hover`;
+                }
+                document.styleSheets.forEach(item => {
+                    //防止取到引用链接的样式，会跨域
+                    if(!item.href) item.rules.forEach(rule => {
+                        if(rule.selectorText === inputHoverBorderColorRule) inputHoverBorderColorRule = '';
+                    })
+                })
+                if(inputHoverBorderColorRule) {
+                    document.styleSheets[length - 1].addRule(inputHoverBorderColorRule, `border-color: ${this.inputHoverBorderColor}`)
+                }
+            },
             sendInputToFather() {
                 let info = this.info;
                 let value = this.input;
@@ -215,9 +245,6 @@
             font-size: inherit;
             &>textarea {
                 resize: none;
-                &:hover {
-                    border-color: $inputHoverBorderColor;
-                }
                 &::-webkit-input-placeholder { /* WebKit browsers */
                     color: #999999;
                 }
@@ -248,18 +275,12 @@
                 border-color: #cdcdcd;
                 color: #333333;
                 cursor: not-allowed;
-                &:hover {
-                    border-color: $inputHoverBorderColor;
-                }
             }
         }
         /deep/ .el-input{
             height: inherit;
             font-size: inherit;
             &>input {
-                &:hover {
-                    border-color: $inputHoverBorderColor;
-                }
                 &::-webkit-input-placeholder { /* WebKit browsers */
                     color: #999999;
                 }

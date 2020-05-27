@@ -1,5 +1,5 @@
 <template>
-    <div class="MySelect" :style="{'height': height, 'width': width}">
+    <div class="MySelect" :class="newClass" :style="{'height': height, 'width': width}">
         <el-select
                 ref="elSelect"
                 :disabled="ifDisable"
@@ -27,7 +27,8 @@
      */
     /**
      * 该组件的配置项
-     * $inputHoverBorderColor:input在hover时的border颜色
+     * selectActiveItemColor:下拉框（选择每页条数）选中项目的字体颜色，建议设置为主题色，属于项目通用配置，会影响项目中其它下拉框
+     * inputHoverBorderColor:输入框在hover时的边框颜色
      * ifDisable:是否禁用,默认值为false
      * placeholder:input提示信息
      * options:下拉选项数组，包含的对象为{
@@ -53,8 +54,13 @@
     /**
      * 需要注意的事项（无）
      */
+    import { Select, Option } from "element-ui"
     export default {
         name: "MySelect",
+        components: {
+            ElSelect: Select,
+            ElOption: Option
+        },
         props: {
             ifDisable: {
                 type: Boolean,
@@ -70,9 +76,17 @@
                     return []
                 }
             },
+            selectActiveItemColor: {
+                type: String,
+                default: ''
+            },
             clearable: {
                 type: Boolean,
                 default: false
+            },
+            inputHoverBorderColor: {
+                type: String,
+                default: ''
             },
             initValue: [String, Number, Boolean],
             width: {
@@ -102,12 +116,45 @@
                 this.input = this.initValue === 0 ? 0 : (this.initValue || '')
             }
         },
+        computed: {
+            newClass() {
+                let inputHoverBorderColor = (this.inputHoverBorderColor || '').replace(/#/g, '');
+                if(inputHoverBorderColor) inputHoverBorderColor = 'a_' + inputHoverBorderColor;
+                return ` ${inputHoverBorderColor}`
+            }
+        },
         mounted() {
             if(this.paddingLeft || this.paddingLeft === 0) this.$refs.elSelect.$children[0].$el.firstElementChild.style.paddingLeft = `${this.paddingLeft}px`;
             if(this.paddingRight || this.paddingRight === 0) this.$refs.elSelect.$children[0].$el.firstElementChild.style.paddingRight = `${this.paddingRight}px`;
             if(this.hideBorder) this.$refs.elSelect.$children[0].$el.firstElementChild.style.borderWidth = 0;
+            this.setCssRules()
         },
         methods: {
+            setCssRules() {
+                let length = document.styleSheets.length;
+                let selectActiveItemColor = (this.selectActiveItemColor || '').replace(/#/g, '');
+                let selectActiveItemColorRule = '';
+                let inputHoverBorderColor = (this.inputHoverBorderColor || '').replace(/#/g, '');
+                let inputHoverBorderColorRule = '';
+                if(inputHoverBorderColor) {
+                    inputHoverBorderColorRule = `.MySelect.a_${inputHoverBorderColor} .el-select .el-input > input:hover`;
+                }
+                if(selectActiveItemColor) {
+                    selectActiveItemColorRule = `.el-select-dropdown__item.selected`;
+                }
+                document.styleSheets.forEach(item => {
+                    //防止取到引用链接的样式，会跨域
+                    if(!item.href) item.rules.forEach(rule => {
+                        if(rule.selectorText === inputHoverBorderColorRule) inputHoverBorderColorRule = '';
+                    })
+                })
+                if(selectActiveItemColorRule) {
+                    document.styleSheets[length - 1].addRule(selectActiveItemColorRule, `color: ${this.selectActiveItemColor} !important`)
+                }
+                if(inputHoverBorderColorRule) {
+                    document.styleSheets[length - 1].addRule(inputHoverBorderColorRule, `border-color: ${this.inputHoverBorderColor}`)
+                }
+            },
             sendInputToFather() {
                 let info = this.info;
                 let selectObj = this.options.filter(item => item.value === this.input)[0] || {};
@@ -122,6 +169,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "css/mixins";
     .MySelect {
         /deep/ .el-popper[x-placement^="bottom"] {
             margin-top: 0;
@@ -153,9 +201,9 @@
                 height: inherit;
                 font-size: inherit;
                 &>input {
-                    &:hover {
+                    /*&:hover {
                         border-color: $inputHoverBorderColor;
-                    }
+                    }*/
                     &::-webkit-input-placeholder { /* WebKit browsers */
                         color: #999999;
                     }

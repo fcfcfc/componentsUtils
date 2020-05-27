@@ -1,8 +1,8 @@
 <template>
     <div class="myDialog">
-        <el-dialog @close="closeFn" :width="width" :title="title" :visible.sync="ifShowStatus">
+        <dialog-u-i @close="closeFn" :width="width" :title="title" :visible.sync="ifShowStatus">
             <slot/>
-        </el-dialog>
+        </dialog-u-i>
     </div>
 </template>
 
@@ -30,8 +30,12 @@
      * 需要注意的事项
      * 1.必须在父组件中监听closeFn，设置显示隐藏的flag
      */
+    import { Dialog } from 'element-ui'
     export default {
         name: "MyDialog",
+        components: {
+            DialogUI: Dialog
+        },
         props: {
             ifShow: {
                 type: Boolean,
@@ -66,6 +70,6 @@
 
 <style lang="scss" scoped>
     .myDialog {
-        
+
     }
 </style>

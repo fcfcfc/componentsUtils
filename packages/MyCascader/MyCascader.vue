@@ -1,6 +1,6 @@
 <template>
-    <div class="MyCascader" :style="{'height': height, 'width': width}">
-        <el-cascader
+    <div class="MyCascader" :class="newClass" :style="{'height': height, 'width': width}">
+        <cascader
                 v-model="value"
                 :options="options"
                 clearable
@@ -33,6 +33,7 @@
      * placeholder:输入框提示信息
      * initVal:初始值，数组形式
      * ifDisable:是否禁用
+     * inputHoverBorderColor:输入框在hover时的边框颜色
      * myProps:配置选项，默认配置为{expandTrigger: 'hover'}，具体为：{
                                  expandTrigger:次级菜单的展开方式，可选值为'click'和'hover'，默认'click'
                                  multiple:是否多选，默认为false
@@ -57,8 +58,12 @@
     /**
      * 需要注意的事项（无）
      */
+    import { Cascader } from 'element-ui'
     export default {
         name: "MyCascader",
+        components: {
+            Cascader
+        },
         props: {
             initVal: {
                 type: Array,
@@ -79,6 +84,10 @@
                 default: function () {
                     return []
                 }
+            },
+            inputHoverBorderColor: {
+                type: String,
+                default: ''
             },
             width: {
                 type: String,
@@ -110,17 +119,44 @@
                 deep: true
             }
         },
-        mounted() {},
+        computed: {
+            newClass() {
+                let inputHoverBorderColor = (this.inputHoverBorderColor || '').replace(/#/g, '');
+                if(inputHoverBorderColor) inputHoverBorderColor = 'a_' + inputHoverBorderColor;
+                return ` ${inputHoverBorderColor}`
+            }
+        },
+        mounted() {
+            this.setCssRules()
+        },
         methods: {
             handleChange(val) {
                 this.value = val;
                 this.$emit('changeValue', val)
+            },
+            setCssRules() {
+                let length = document.styleSheets.length;
+                let inputHoverBorderColor = (this.inputHoverBorderColor || '').replace(/#/g, '');
+                let inputHoverBorderColorRule = '';
+                if(inputHoverBorderColor) {
+                    inputHoverBorderColorRule = `.MyCascader.a_${inputHoverBorderColor} .el-cascader .el-input > input:hover, .MyCascader.a_${inputHoverBorderColor} .el-cascader .el-input.is-disabled .el-input__inner:hover`;
+                }
+                document.styleSheets.forEach(item => {
+                    //防止取到引用链接的样式，会跨域
+                    if(!item.href) item.rules.forEach(rule => {
+                        if(rule.selectorText === inputHoverBorderColorRule) inputHoverBorderColorRule = '';
+                    })
+                })
+                if(inputHoverBorderColorRule) {
+                    document.styleSheets[length - 1].addRule(inputHoverBorderColorRule, `border-color: ${this.inputHoverBorderColor}`)
+                }
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    @import "css/mixins";
     .MyCascader {
         /deep/ .el-cascader {
             height: inherit;
@@ -132,9 +168,6 @@
                 height: inherit;
                 font-size: inherit;
                 &>input {
-                    &:hover {
-                        border-color: $inputHoverBorderColor;
-                    }
                     &::-webkit-input-placeholder { /* WebKit browsers */
                         color: #999999;
                     }
@@ -165,9 +198,6 @@
                     border-color: #cdcdcd;
                     color: #333333;
                     cursor: not-allowed;
-                    &:hover {
-                        border-color: $inputHoverBorderColor;
-                    }
                 }
             }
         }
