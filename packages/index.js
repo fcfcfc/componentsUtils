@@ -20,6 +20,10 @@ import MyInput from "./MyInput";
 import MyPagination from "./MyPagination";
 import MySelect from "./MySelect";
 import MyUpload from "./MyUpload";
+import MyProgress from "./MyProgress";
+import MyRadio from "./MyRadio";
+import MyTable from "./MyTable";
+import MyTimeline from "./MyTimeline";
 const components = [
     ComponentFadeOutIn,
     MyAudio,
@@ -42,7 +46,11 @@ const components = [
     MyInput,
     MyPagination,
     MySelect,
-    MyUpload
+    MyUpload,
+    MyProgress,
+    MyRadio,
+    MyTable,
+    MyTimeline
 ]
 const install = function (Vue, opts = {}) {
     components.map(component => {
@@ -76,5 +84,9 @@ export default {
     MyInput,
     MyPagination,
     MySelect,
-    MyUpload
+    MyUpload,
+    MyProgress,
+    MyRadio,
+    MyTable,
+    MyTimeline
 }

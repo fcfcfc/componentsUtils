@@ -1,5 +1,5 @@
 <template>
-    <el-radio-group :class="`abc_${circleInnerSize}_${bgcText}`" @change="valueChange" v-model="radio">
+    <el-radio-group class="myRadio" :class="newClass" @change="valueChange" v-model="radio">
         <el-radio
                 :style="{'margin-right': marginRight, 'margin-bottom': marginBottom}"
                 ref="myRadio"
@@ -21,8 +21,7 @@
      */
     /**
      * 该组件的配置项
-     * $radioInnerBackgroundColor:选中时内圈的背景颜色（主题色）
-     * $radioOuterBackgroundColor:选中时外圈的背景颜色（主题色）
+     * radioOuterBackgroundColor:选中时外圈的背景颜色（主题色）
      * ifDisable:是否禁用,默认值为false
      * circleSize:自定义radio的大小（带单位）
      * circleInnerSize:自定义选中时内圈的大小（带单位）
@@ -56,8 +55,13 @@
     /**
      * 需要注意的事项（无）
      */
+    import { RadioGroup, Radio } from "element-ui"
     export default {
-        name: "Radio",
+        name: "MyRadio",
+        components: {
+            ElRadioGroup: RadioGroup,
+            ElRadio: Radio
+        },
         props: {
             ifDisable: {
                 type: Boolean,
@@ -88,6 +92,10 @@
                 default: ''
             },
             spanColorChecked: {
+                type: String,
+                default: ''
+            },
+            radioOuterBackgroundColor: {
                 type: String,
                 default: ''
             },
@@ -142,17 +150,19 @@
         computed: {
             myRadioDom() {
                 return this.$refs.myRadio
+            },
+            newClass() {
+                let circleInnerSize = this.circleInnerSize || '';
+                let circleInnerBackgroundColor = (this.circleInnerBackgroundColor || '').replace(/#/g, '');
+                let radioOuterBackgroundColor = (this.radioOuterBackgroundColor || '').replace(/#/g, '');
+                if(circleInnerBackgroundColor) circleInnerBackgroundColor = 'a_' + circleInnerBackgroundColor;
+                if(circleInnerSize) circleInnerSize = 'b_' + circleInnerSize;
+                if(radioOuterBackgroundColor) radioOuterBackgroundColor = 'c_' + radioOuterBackgroundColor;
+                return ` ${circleInnerBackgroundColor} ${circleInnerSize} ${radioOuterBackgroundColor}`
             }
         },
         mounted() {
-            this.bgcText = (this.circleInnerBackgroundColor || '').substring(1);
-            if(this.circleInnerSize) {
-                document.styleSheets[0].addRule(`.abc_${this.circleInnerSize}_${this.bgcText} .el-radio__input > .el-radio__inner::after`, `height: ${this.circleInnerSize} !important`);
-                document.styleSheets[0].addRule(`.abc_${this.circleInnerSize}_${this.bgcText} .el-radio__input > .el-radio__inner::after`, `width: ${this.circleInnerSize} !important`)
-            }
-            if(this.circleInnerBackgroundColor) {
-                document.styleSheets[0].addRule(`.abc_${this.circleInnerSize}_${this.bgcText} .el-radio__input > .el-radio__inner::after`, `background-color: ${this.circleInnerBackgroundColor} !important`);
-            }
+            this.setCssRules();
             if(this.circleBorderColor || this.circleBackgroundColor || this.circleSize || this.ifVertical || this.spanColor || this.fontSize) {
                 this.myRadioDom.forEach(e => {
                     let labelDom = e.$el;
@@ -181,6 +191,43 @@
             this.valueChangeStyle(this.initValue);
         },
         methods: {
+            setCssRules() {
+                let length = document.styleSheets.length;
+                let circleInnerSize = this.circleInnerSize || '';
+                let circleInnerBackgroundColor = (this.circleInnerBackgroundColor || '').replace(/#/g, '');
+                let radioOuterBackgroundColor = (this.radioOuterBackgroundColor || '').replace(/#/g, '');
+                let circleInnerSizeRule = '';
+                let circleInnerBackgroundColorRule = '';
+                let radioOuterBackgroundColorRule = '';
+                if(radioOuterBackgroundColor) {
+                    radioOuterBackgroundColorRule = `.myRadio.c_${radioOuterBackgroundColor} .el-radio__input.is-checked .el-radio__inner`;
+                }
+                if(circleInnerSize) {
+                    circleInnerSizeRule = `.myRadio.b_${circleInnerSize} .el-radio__input > .el-radio__inner::after`;
+                }
+                if(circleInnerBackgroundColor) {
+                    circleInnerBackgroundColorRule = `.myRadio.a_${circleInnerBackgroundColor} .el-radio__input > .el-radio__inner::after`;
+                }
+                document.styleSheets.forEach(item => {
+                    //防止取到引用链接的样式，会跨域
+                    if(!item.href) item.rules.forEach(rule => {
+                        if(rule.selectorText === circleInnerSizeRule) circleInnerSizeRule = '';
+                        if(rule.selectorText === circleInnerBackgroundColorRule) circleInnerBackgroundColorRule = '';
+                        if(rule.selectorText === radioOuterBackgroundColorRule) radioOuterBackgroundColorRule = '';
+                    })
+                })
+                if(circleInnerSizeRule) {
+                    document.styleSheets[length - 1].addRule(circleInnerSizeRule, `height: ${this.circleInnerSize} !important`);
+                    document.styleSheets[length - 1].addRule(circleInnerSizeRule, `width: ${this.circleInnerSize} !important`)
+                }
+                if(circleInnerBackgroundColorRule) {
+                    document.styleSheets[length - 1].addRule(circleInnerBackgroundColorRule, `background-color: ${this.circleInnerBackgroundColor} !important`);
+                }
+                if(radioOuterBackgroundColorRule) {
+                    document.styleSheets[length - 1].addRule(radioOuterBackgroundColorRule, `border-color: ${this.radioOuterBackgroundColor} !important`);
+                    document.styleSheets[length - 1].addRule(radioOuterBackgroundColorRule, `background-color: ${this.radioOuterBackgroundColor} !important`);
+                }
+            },
             valueChangeStyle(val) {
                 let index = this.labelArr.findIndex(e => e.value === val);
                 if(this.showCheckBackground || this.circleCheckedBorderColor || this.circleCheckedBackgroundColor || this.spanColorChecked) {
@@ -240,12 +287,7 @@
             &::after {
                 height: 8.5px;
                 width: 8.5px;
-                background-color: $radioInnerBackgroundColor;
             }
-        }
-        .el-radio__input.is-checked .el-radio__inner {
-            border-color: $radioOuterBackgroundColor;
-            background-color: $radioOuterBackgroundColor;
         }
     }
 </style>

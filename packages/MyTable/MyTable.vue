@@ -1,5 +1,5 @@
 <template>
-    <div class="myTable" :class="{'useTrBgc1': useTrBgc1, 'diyStripeColor': diyStripeColor}">
+    <div class="myTable" :class="newClass">
         <div v-if="tableSelectionWidth && !useOriginalSelection"
              :style="{'width': `${tableSelectionWidth}px`, 'border-color': borderColor, 'border-right-width': tableSelectionBorderRightWidth}"
              :flex="tableSelectionFlex"
@@ -88,7 +88,7 @@
      */
     /**
      * 该组件的配置项
-     * $tableHeaderBackground:自定义table表头的背景颜色
+     * tableHeaderBackground:自定义table表头的背景颜色
      * height:Table 的高度，默认为自动高度。如果 height 为 number 类型，单位 px；如果 height 为 string 类型，则这个高度会设置为 Table 的 style.height 的值，Table 的高度会受控于外部样式。
      * maxHeight:Table 的最大高度。合法的值为数字或者单位为 px 的高度。
      * tableData:table的数据数组，包含的对象为tableTitle中propName设置的列的数据名称
@@ -161,8 +161,8 @@
      * titleHeight:自定义表头单元格的高度
      * ifOpenHighlightCurrentRow:是否要开始单选高亮当前行
      * stripe:是否创建带斑马纹的表格，默认不启用
-     * useTrBgc1:是否启用自定义行背景颜色方案1
-     * diyStripeColor:是否使用自定义的斑马纹颜色
+     * tableTrBackground:自定义行背景颜色
+     * tableDiyStripeColor:自定义的斑马纹颜色
      * tableColumnNum:表格有几列，配合ifNotRightBorder使用
      * ifNotRightBorder:是否不显示表格的右border，默认显示，需设置tableColumnNum
      */
@@ -179,10 +179,16 @@
     /**
      * 需要注意的事项（无）
      */
-    import Main from '@/utils/js/main'
-    import MyBtn from "@/utils/components/MyBtn";
+    import Main from 'js-utils-common'
+    import MyBtn from "../MyBtn";
+    import { Table, TableColumn } from "element-ui"
     export default {
-        components: {MyBtn},
+        name: "MyTable",
+        components: {
+            MyBtn,
+            ElTable: Table,
+            ElTableColumn: TableColumn
+        },
         props: {
             height: [Number, String],
             maxHeight: [Number, String],
@@ -220,6 +226,10 @@
                 type: String,
                 default: ''
             },
+            tableHeaderBackground: {
+                type: String,
+                default: ''
+            },
             titleBorderColor: {
                 type: String,
                 default: ''
@@ -236,9 +246,9 @@
                 type: Boolean,
                 default: false
             },
-            diyStripeColor: {
-                type: Boolean,
-                default: false
+            tableDiyStripeColor: {
+                type: String,
+                default: ''
             },
             stripe: {
                 type: Boolean,
@@ -248,9 +258,9 @@
                 type: Boolean,
                 default: false
             },
-            useTrBgc1: {
-                type: Boolean,
-                default: false
+            tableTrBackground: {
+                type: String,
+                default: ''
             },
             spanMethodsKey: {
                 type: String,
@@ -373,6 +383,15 @@
             };
         },
         computed: {
+            newClass() {
+                let tableTrBackground = (this.tableTrBackground || '').replace(/#/g, '');
+                let tableHeaderBackground = (this.tableHeaderBackground || '').replace(/#/g, '');
+                let tableDiyStripeColor = (this.tableDiyStripeColor || '').replace(/#/g, '');
+                if(tableHeaderBackground) tableHeaderBackground = 'a_' + tableHeaderBackground;
+                if(tableTrBackground) tableTrBackground = 'b_' + tableTrBackground;
+                if(tableDiyStripeColor) tableDiyStripeColor = 'c_' + tableDiyStripeColor;
+                return ` ${tableHeaderBackground} ${tableTrBackground} ${tableDiyStripeColor}`
+            },
             myTableComponents() {
                 return this.$refs.myTable;
             },
@@ -389,6 +408,7 @@
                     tableTitles[i].style.height = this.titleHeight;
                 }
             });
+            this.setCssRules();
             this.$nextTick(() => {
                 this.setDiyBorderColor();
                 this.serialThStyle();
@@ -441,6 +461,41 @@
             }
         },
         methods: {
+            setCssRules() {
+                let length = document.styleSheets.length;
+                let tableHeaderBackground = (this.tableHeaderBackground || '').replace(/#/g, '');
+                let tableTrBackground = (this.tableTrBackground || '').replace(/#/g, '');
+                let tableDiyStripeColor = (this.tableDiyStripeColor || '').replace(/#/g, '');
+                let tableHeaderBackgroundRule = '';
+                let tableTrBackgroundRule = '';
+                let tableDiyStripeColorRule = '';
+                if(tableHeaderBackground) {
+                    tableHeaderBackgroundRule = `.myTable.a_${tableHeaderBackground} table th.titleStyle, .myTable.a_${tableHeaderBackground} table th.selectionStyle`;
+                }
+                if(tableTrBackground) {
+                    tableTrBackgroundRule = `.myTable.b_${tableTrBackground} .el-table tr`;
+                }
+                if(tableDiyStripeColor) {
+                    tableDiyStripeColorRule = `.myTable.c_${tableDiyStripeColor} .el-table--striped .el-table__body tr.el-table__row--striped td`;
+                }
+                document.styleSheets.forEach(item => {
+                    //防止取到引用链接的样式，会跨域
+                    if(!item.href) item.rules.forEach(rule => {
+                        if(rule.selectorText === tableHeaderBackgroundRule) tableHeaderBackgroundRule = '';
+                        if(rule.selectorText === tableTrBackgroundRule) tableTrBackgroundRule = '';
+                        if(rule.selectorText === tableDiyStripeColorRule) tableDiyStripeColorRule = '';
+                    })
+                })
+                if(tableHeaderBackgroundRule) {
+                    document.styleSheets[length - 1].addRule(tableHeaderBackgroundRule, `background-color: ${this.tableHeaderBackground}`)
+                }
+                if(tableTrBackgroundRule) {
+                    document.styleSheets[length - 1].addRule(tableTrBackgroundRule, `background-color: ${this.tableTrBackground}`)
+                }
+                if(tableDiyStripeColorRule) {
+                    document.styleSheets[length - 1].addRule(tableDiyStripeColorRule, `background-color: ${this.tableDiyStripeColor}`)
+                }
+            },
             //根据table数据，得到合并规则数组spanMethodArr
             getSpanMethodArr(arr, keyName) {
                 let productNameArr = arr.map(item => item[keyName]);
@@ -641,13 +696,13 @@
             }
             th.titleStyle {
                 border-color: #FFFFFF;
-                background-color: $tableHeaderBackground;
+               /* background-color: $tableHeaderBackground;*/
                 color: #333333;
                 font-weight: unset;
             }
             th.selectionStyle {
                 border-right: none;
-                background-color: $tableHeaderBackground !important;
+               /* background-color: $tableHeaderBackground !important;*/
                 &>.cell {
                     padding-right: 0;
                 }
@@ -693,11 +748,11 @@
         /deep/ .selectionStyle .cell {
             overflow: unset;
         }
-        &.useTrBgc1 /deep/ .el-table tr {
+        /*&.useTrBgc1 /deep/ .el-table tr {
             background-color: $tableTrBackground1;
-        }
-        &.diyStripeColor /deep/ .el-table--striped .el-table__body tr.el-table__row--striped td {
+        }*/
+        /*&.diyStripeColor /deep/ .el-table--striped .el-table__body tr.el-table__row--striped td {
             background-color: $tableDiyStripeColor;
-        }
+        }*/
     }
 </style>

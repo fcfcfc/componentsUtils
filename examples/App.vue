@@ -53,6 +53,81 @@
         <my-select input-hover-border-color="#000" select-active-item-color="red" :options="[{value:1,label:123123}]"/>
         <div>22.MyUpload</div>
         <my-upload color="red" background-color-hover="green" background-color="gray"/>
+        <div>23.MyProgress</div>
+        <my-progress :percentage="20" color="blue"/>
+        <div>24.MyRadio</div>
+        <my-radio :label-arr="[{value:1,text:111},{value:2,text:222}]" radio-outer-background-color="black" circle-inner-background-color="red" circle-inner-size="1px"/>
+        <div>25.MyTable</div>
+        <my-table ref="myTable"
+                  :set-title-border="true"
+                  :if-not-left-border="true"
+                  :if-not-right-border="true"
+                  :table-column-num="8"
+                  :stripe="true"
+                  table-diy-stripe-color="yellow"
+                  table-tr-background="blue"
+                  table-header-background="red"
+                  title-font-size="16px"
+                  title-color="#FFFFFF"
+                  cell-font-size="14px"
+                  cell-height="50px"
+                  title-line-height="1"
+                  title-height="34px"
+                  cell-font-color="#777777"
+                  border-color="#e6e6e6"
+                  title-border-color="#FFFFFF"
+                  cell-new-font-color-key="isReadFontColor"
+                  class="tableStyle"
+                  :tableSerial="{
+                      width: 42,
+                      label: '序号',
+                      ifCenter: true,
+                      cellPadding: 'cellPadding0'
+                  }"
+                  :table-title="[
+                            {
+                                label: '病例名称',
+                                showOverflowTooltip: true,
+                                ifCenter: true,
+                                propName: 'name'
+                            },
+                            {
+                                label: '分类',
+                                showOverflowTooltip: true,
+                                ifCenter: true,
+                                propName: 'caseTypeName',
+                                width: 149
+                            },
+                            {
+                                label: '作者',
+                                showOverflowTooltip: true,
+                                ifCenter: true,
+                                propName: 'authorName',
+                                width: 79
+                            }
+                        ]"
+                  :table-data="[
+                      {
+                          id: '425872381732552704',
+                          name: '教案数据完整性测试病例(治疗原则)',
+                          authorName: '???',
+                          caseTypeName: '内科/呼吸系统疾病'
+                      },
+                      {
+                          id: '425872381732552704',
+                          name: '教案数据完整性测试病例(治疗原则)',
+                          authorName: '???',
+                          caseTypeName: '内科/呼吸系统疾病'
+                      }
+                  ]">
+        </my-table>
+        <div>26.MyTimeline</div>
+        <my-timeline :activities="[
+            {
+                width: '20px',
+                content: '123'
+            }
+        ]"/>
     </div>
 </template>
 
