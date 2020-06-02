@@ -128,14 +128,14 @@
                 content: '123'
             }
         ]"/>
+        <div>27.MyToolTip</div>
+        <my-tool-tip/>
     </div>
 </template>
 
 <script>
-    import MyUpload from "../packages/MyUpload/MyUpload";
     export default {
         name: 'App',
-        components: {MyUpload},
         data() {
             return {
                 notUsed: false

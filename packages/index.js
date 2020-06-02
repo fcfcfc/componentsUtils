@@ -24,6 +24,7 @@ import MyProgress from "./MyProgress";
 import MyRadio from "./MyRadio";
 import MyTable from "./MyTable";
 import MyTimeline from "./MyTimeline";
+import MyToolTip from "./MyToolTip";
 const components = [
     ComponentFadeOutIn,
     MyAudio,
@@ -50,7 +51,8 @@ const components = [
     MyProgress,
     MyRadio,
     MyTable,
-    MyTimeline
+    MyTimeline,
+    MyToolTip
 ]
 const install = function (Vue, opts = {}) {
     components.map(component => {
@@ -88,5 +90,6 @@ export default {
     MyProgress,
     MyRadio,
     MyTable,
-    MyTimeline
+    MyTimeline,
+    MyToolTip
 }
