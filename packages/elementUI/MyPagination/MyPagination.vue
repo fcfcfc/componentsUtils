@@ -172,7 +172,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "css/mixins";
+    @import "../../../css/mixins";
     .myPagination {
         /deep/ .el-pagination.is-background .btn-prev,
         /deep/ .el-pagination.is-background .btn-next,

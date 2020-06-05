@@ -41,7 +41,7 @@
      * 1.此组件需要在父组件中手动调用组件内的方法使用
      */
     import Main from 'js-utils-common'
-    import MyBtn from '../MyBtn'
+    import MyBtn from '../../MyBtn'
     export default {
         name: "MySendMessageBox",
         props: {

@@ -128,8 +128,136 @@
                 content: '123'
             }
         ]"/>
-        <div>27.MyToolTip</div>
-        <my-tool-tip/>
+        <my-tool-tip content="MyToolTip" position="left-end">
+            <div>27.MyToolTip</div>
+        </my-tool-tip>
+        <div>28.VerticalNavMenu</div>
+        <vertical-nav-menu width="260px"
+                           item-height="44px"
+                           icon-margin-right="6px"
+                           item-padding-right="16px"
+                           item-padding-left="24px"
+                           sub-item-padding-left="40px"
+                           :menu-list="[
+                    {
+                        toUrl: 'home',
+                        label: '首页',
+                        iconClass: 'icon-shouye'
+                    },
+                    {
+                        label: '基础参数维护',
+                        iconClass: '1',
+                        children: [
+                            {
+                                toUrl: 'interrogation',
+                                label: '问诊项目'
+                            },
+                            {
+                                toUrl: 'aaa',
+                                label: '问诊项目'
+                            },
+                            {
+                                toUrl: 'interrogation3',
+                                label: '问诊项目'
+                            }
+                        ]
+                    },
+                    {
+                        toUrl: 'home2',
+                        label: '首页2',
+                        iconClass: '1'
+                    },
+                    {
+                        label: '基础参数维护',
+                        iconClass: '2',
+                        children: [
+                            {
+                                toUrl: 'interrogation4',
+                                label: '问诊项目'
+                            },
+                            {
+                                toUrl: 'interrogation5',
+                                label: '问诊项目'
+                            },
+                            {
+                                toUrl: 'interrogation6',
+                                label: '问诊项目'
+                            }
+                        ]
+                    },
+                ]"
+                           arrow-icon-height="6px"
+                           arrow-icon-width="11px"
+                           :if-use-hover-bgc1="true"
+                           :if-use-active-bgc1="true"
+
+        />
+        <div>29.MyTree</div>
+        <my-tree active-item-bg-color="red"
+                 active-item-font-color="blue"
+                 items-hover-bgc="yellow"
+                :show-left-triangle="true"
+                 :not-triangle="true"
+                 :tree-data="[
+                    {
+                        id: 1,
+                        isSelected: false,
+                        toUrl: 'home',
+                        label: '首页',
+                        iconUrl: '1',
+                        children: [],
+                    },
+                    {
+                        id: 2,
+                        isSelected: false,
+                        label: '基础参数维护',
+                        iconUrl: '2',
+                        children: [
+                            {
+                                id: 20,
+                                isSelected: false,
+                                toUrl: 'interrogation',
+                                label: '问诊项目',
+                                children: []
+                            },
+                            {
+                                id: 21,
+                                isSelected: false,
+                                toUrl: 'physicalExamination',
+                                label: '体格检查项目',
+                                children: []
+                            },
+                            {
+                                id: 22,
+                                isSelected: false,
+                                toUrl: 'auxiliary',
+                                label: '辅助项目检查',
+                                children: []
+                            },
+                            {
+                                id: 23,
+                                isSelected: false,
+                                toUrl: 'treatment',
+                                label: '治疗项目',
+                                children: []
+                            },
+                            {
+                                id: 24,
+                                isSelected: false,
+                                toUrl: 'case',
+                                label: '病例分类',
+                                children: []
+                            }
+                        ]
+                    }
+                ]"/>
+        <div>30.MyBackTop</div>
+        <my-back-top/>
+        <div>31.EChartsBarType1</div>
+        <div>32.EChartsBarType2</div>
+        <div>33.EChartsBarType3</div>
+        <div>34.EChartsLineType1</div>
+        <div>35.EChartsRadarType1</div>
     </div>
 </template>
 

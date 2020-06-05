@@ -13,6 +13,7 @@
   "dependencies": {
     "@antv/g6": "^3.4.10",
     "core-js": "^3.6.4",
+    "echarts": "^4.8.0",
     "element-ui": "^2.13.2",
     "flv.js": "^1.5.0",
     "html2canvas": "^1.0.0-rc.5",

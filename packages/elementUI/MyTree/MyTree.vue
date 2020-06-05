@@ -1,19 +1,5 @@
 <template>
-    <div class="myTree" :class="{
-            'notTriangle': notTriangle,
-            'showLeftTriangle': showLeftTriangle,
-            'diyItemsHoverBgc': useDiyItemsHoverBgc,
-            'diyItemsHoverBgc2': useDiyItemsHoverBgc2,
-            'diyItemsHoverBgc3': useDiyItemsHoverBgc3,
-            'activeItemFontColorDiy1': activeItemFontColorDiy1,
-            'activeItemFontColorDiy2': activeItemFontColorDiy2,
-            'activeItemBgColorDiy1': activeItemBgColorDiy1,
-            'activeItemBgColorDiy2': activeItemBgColorDiy2,
-            'activeItemBgColorDiy3': activeItemBgColorDiy3,
-            'itemMarginLeft': itemMarginLeft,
-            'itemPaddingLeft': itemPaddingLeft,
-            'hideEmpty': hideEmpty
-        }"
+    <div class="myTree" :class="newClass"
          :style="{'width': width}">
         <el-tree ref="myTree"
                  :data="treeDataArr"
@@ -50,7 +36,6 @@
      */
     /**
      * 该组件的配置项
-     * $treeBackgroundColor:选中菜单时的背景颜色（主题色）
      * notExpandOnClickNode:是否禁用点击展开或者收缩，默认值为false
      * defaultExpandAll：是否默认展开所有节点，默认值为false
      * width:自定义宽度（带单位）
@@ -73,15 +58,10 @@
      * leftTrianglePadding:自定义左边的展开/收缩箭头的padding（带单位），默认为6px
      * showLeftTriangle:是否显示左边的展开/收缩箭头，默认值为false
      * ifSetNoChildItemLeftTriangleNone:在设置了显示左边的展开/收缩箭头时，是否将没有子节点的元素的箭头隐藏，默认不隐藏
-     * useDiyItemsHoverBgc:是否使用自定义的鼠标滑过颜色，默认值为false
-     * useDiyItemsHoverBgc2:是否使用自定义的鼠标滑过颜色（自定义的第二种），默认值为false
-     * useDiyItemsHoverBgc3:是否使用自定义的鼠标滑过颜色（自定义的第三种），默认值为false
+     * itemsHoverBgc:自定义的鼠标滑过颜色
      * itemsHeight:节点的高度（带单位），默认为45px
-     * activeItemFontColorDiy1:选中后自定义的字体颜色方案1
-     * activeItemFontColorDiy2:选中后自定义的字体颜色方案2
-     * activeItemBgColorDiy1:选中后自定义的背景颜色方案1
-     * activeItemBgColorDiy2:选中后自定义的背景颜色方案2
-     * activeItemBgColorDiy3:选中后自定义的背景颜色方案3
+     * activeItemFontColor:选中后的字体颜色
+     * activeItemBgColor:选中后的背景颜色
      * itemMarginLeft:节点的左边距（带单位），不包括左边展开/折叠按钮，默认为15px
      * itemPaddingLeft:节点的padding左边距，默认为0
      * itemChildExtraPaddingLeft:子节点比父节点多的paddingLeft值，默认为15
@@ -125,8 +105,12 @@
      * 1.treeData中必须有id属性
      * 2.节点被点击时，如果是父节点，会有300ms的展开/收缩动画
      */
+    import { Tree } from "element-ui"
     export default {
-        name: 'Tree',
+        name: 'MyTree',
+        components: {
+            ElTree: Tree
+        },
         props: {
             hideEmpty: {
                 type: Boolean,
@@ -276,37 +260,17 @@
                 type: Boolean,
                 default: false
             },
-            useDiyItemsHoverBgc: {
-                type: Boolean,
-                default: false
+            itemsHoverBgc: {
+                type: String,
+                default: ''
             },
-            useDiyItemsHoverBgc2: {
-                type: Boolean,
-                default: false
+            activeItemFontColor: {
+                type: String,
+                default: ''
             },
-            useDiyItemsHoverBgc3: {
-                type: Boolean,
-                default: false
-            },
-            activeItemFontColorDiy1: {
-                type: Boolean,
-                default: false
-            },
-            activeItemFontColorDiy2: {
-                type: Boolean,
-                default: false
-            },
-            activeItemBgColorDiy1: {
-                type: Boolean,
-                default: false
-            },
-            activeItemBgColorDiy2: {
-                type: Boolean,
-                default: false
-            },
-            activeItemBgColorDiy3: {
-                type: Boolean,
-                default: false
+            activeItemBgColor: {
+                type: String,
+                default: ''
             }
         },
         data() {
@@ -316,12 +280,22 @@
             }
         },
         computed: {
+            newClass() {
+                let itemsHoverBgc = (this.itemsHoverBgc || '').replace(/#/g, '');
+                let activeItemFontColor = (this.activeItemFontColor || '').replace(/#/g, '');
+                let activeItemBgColor = (this.activeItemBgColor || '').replace(/#/g, '');
+                if(itemsHoverBgc) itemsHoverBgc = 'a_' + itemsHoverBgc;
+                if(activeItemFontColor) activeItemFontColor = 'b_' + activeItemFontColor;
+                if(activeItemBgColor) activeItemBgColor = 'c_' + activeItemBgColor;
+                return ` ${activeItemBgColor} ${activeItemFontColor} ${itemsHoverBgc} ${this.notTriangle ? 'notTriangle': ''} ${this.showLeftTriangle ? 'showLeftTriangle': ''} ${this.hideEmpty ? 'hideEmpty': ''}`
+            },
             myTreeDom() {
                 return this.$refs.myTree.$children;
             }
         },
         mounted() {
-            this.setOtherOptions()
+            this.setOtherOptions();
+            this.setCssRules()
         },
         watch: {
             treeData: {
@@ -339,6 +313,49 @@
             },
         },
         methods: {
+            setCssRules() {
+                let length = document.styleSheets.length;
+                let itemsHoverBgc = (this.itemsHoverBgc || '').replace(/#/g, '');
+                let activeItemFontColor = (this.activeItemFontColor || '').replace(/#/g, '');
+                let activeItemBgColor = (this.activeItemBgColor || '').replace(/#/g, '');
+                let itemsHoverBgcRule = '';
+                let notTriangleRule = '';
+                let activeItemFontColorRule = '';
+                let activeItemBgColorRule = '';
+                if(itemsHoverBgc) {
+                    itemsHoverBgcRule = `.myTree.a_${itemsHoverBgc} .el-tree-node__content:hover`;
+                }
+                if(this.notTriangle) {
+                    notTriangleRule = '.myTree.notTriangle .el-tree-node__label::after'
+                }
+                if(activeItemFontColor) {
+                    activeItemFontColorRule = `.myTree.b_${activeItemFontColor} .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content .el-tree-node__label`;
+                }
+                if(activeItemBgColor) {
+                    activeItemBgColorRule = `.myTree.c_${activeItemBgColor} .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content`;
+                }
+                document.styleSheets.forEach(item => {
+                    //防止取到引用链接的样式，会跨域
+                    if(!item.href) item.rules.forEach(rule => {
+                        if(rule.selectorText === notTriangleRule) notTriangleRule = '';
+                        if(rule.selectorText === itemsHoverBgcRule) itemsHoverBgcRule = '';
+                        if(rule.selectorText === activeItemFontColorRule) activeItemFontColorRule = '';
+                        if(rule.selectorText === activeItemBgColorRule) activeItemBgColorRule = '';
+                    })
+                })
+                if(notTriangleRule) {
+                    document.styleSheets[length - 1].addRule(notTriangleRule, 'display: none')
+                }
+                if(itemsHoverBgcRule) {
+                    document.styleSheets[length - 1].addRule(itemsHoverBgcRule, `background-color: ${this.itemsHoverBgc}`)
+                }
+                if(activeItemFontColorRule) {
+                    document.styleSheets[length - 1].addRule(activeItemFontColorRule, `color: ${this.activeItemFontColor} !important`)
+                }
+                if(activeItemBgColorRule) {
+                    document.styleSheets[length - 1].addRule(activeItemBgColorRule, `background-color: ${this.activeItemBgColor}`)
+                }
+            },
             allowDropFn(draggingNode, dropNode, type) {
                 let draggingNodeLevel = draggingNode.level;
                 let dropNodeLevel = dropNode.level;
@@ -416,10 +433,6 @@
             },
             setOtherOptions() {
                 let myTreeDom = this.myTreeDom;
-
-                if(this.notTriangle) {
-                    document.styleSheets[0].addRule('.myTree.notTriangle .el-tree-node__label::after', 'display: none');
-                }
 
                 if(this.borderColor
                     || this.fontColor
@@ -523,6 +536,7 @@
     }
 </script>
 <style lang="scss" scoped>
+    @import "../../../css/mixins";
     @keyframes myRotate {
         0% {
             transform: rotate(0deg);
@@ -568,7 +582,6 @@
             }
         }
         /deep/ .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-            background-color: $treeBackgroundColor;
             padding-left: 15px;
             transition: background-color .5s linear;
             .el-tree-node__label{
@@ -587,42 +600,8 @@
         &.showLeftTriangle /deep/ .el-icon-caret-right {
             display: unset;
         }
-        &.diyItemsHoverBgc /deep/ .el-tree-node__content {
-            &:hover {
-                background-color: $treeHoverBackgroundColor;
-            }
-        }
-        &.diyItemsHoverBgc2 /deep/ .el-tree-node__content {
-            &:hover {
-                background-color: $treeHoverBackgroundColor2;
-            }
-        }
-        &.diyItemsHoverBgc3 /deep/ .el-tree-node__content {
-            &:hover {
-                background-color: $treeHoverBackgroundColor3;
-            }
-        }
         &.hideEmpty /deep/ .el-tree__empty-block {
             display: none;
-        }
-        &.activeItemFontColorDiy1 /deep/ .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-            .el-tree-node__label{
-                color: $treeItemActiveFontColor1 !important;
-            }
-        }
-        &.activeItemFontColorDiy2 /deep/ .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-            .el-tree-node__label{
-                color: $treeItemActiveFontColor2 !important;
-            }
-        }
-        &.activeItemBgColorDiy1 /deep/ .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-            background-color: $treeBackgroundColor1;
-        }
-        &.activeItemBgColorDiy2 /deep/ .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-            background-color: $treeBackgroundColor2;
-        }
-        &.activeItemBgColorDiy3 /deep/ .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-            background-color: $treeBackgroundColor3;
         }
     }
 </style>

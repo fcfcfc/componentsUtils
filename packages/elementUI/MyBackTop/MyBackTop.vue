@@ -23,12 +23,17 @@
     /**
      * 需要注意的事项（无）
      */
+    import { Backtop } from "element-ui"
     export default {
+        components: {
+            ElBacktop: Backtop
+        },
         name: "MyBackTop"
     }
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../css/mixins";
     .iconStyle {
         @include ub-img();
         height: 100%;

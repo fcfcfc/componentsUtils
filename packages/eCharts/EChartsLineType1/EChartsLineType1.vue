@@ -31,7 +31,7 @@
     require('echarts/lib/component/legend');
     require('echarts/lib/component/tooltip');
     require('echarts/lib/component/title');
-    import Main from '@/utils/js/main'
+    import Main from "js-utils-common";
     export default {
         name: 'EChartsLineType1',
         props: [

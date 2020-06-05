@@ -1,6 +1,6 @@
 <template>
     <el-menu
-            :default-active="this.$route.name"
+            :default-active="defaultActive"
             class="verticalNavMenu"
             :class="newClass"
             :style="{
@@ -93,9 +93,16 @@
     /**
      * 需要注意的事项
      * 1.菜单的图标使用阿里巴巴矢量库的图标，font-family为font-family: "font_family" !important;
+     * 2.菜单路径使用router中的name
      */
+    import { Menu, MenuItem, Submenu } from "element-ui"
     export default {
         name: "VerticalNavMenu",
+        components: {
+            ElMenu: Menu,
+            ElMenuItem: MenuItem,
+            ElSubmenu: Submenu
+        },
         props: {
             width: {
                 type: String,
@@ -168,7 +175,14 @@
                 }
             }
         },
+        data() {
+            return {
+            }
+        },
         computed: {
+            defaultActive() {
+                return this.$route ? this.$route.name : '';
+            },
             newClass() {
                 let activeBgcColor = (this.activeBgcColor || '').replace(/#/g, '');
                 let hoverBgcColor = (this.hoverBgcColor || '').replace(/#/g, '');
@@ -195,7 +209,7 @@
                     activeBgcColorRule = `.verticalNavMenu.a_${activeBgcColor} .el-menu-item.is-active`;
                 }
                 document.styleSheets.forEach(item => {
-                    item.rules.forEach(rule => {
+                    if(!item.href) item.rules.forEach(rule => {
                         if(rule.selectorText === hoverBgcColorRule) hoverBgcColorRule = '';
                         if(rule.selectorText === activeBgcColorRule) activeBgcColorRule = '';
                     })

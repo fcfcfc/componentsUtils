@@ -156,7 +156,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "css/mixins";
+    @import "../../../css/mixins";
     .MyCascader {
         /deep/ .el-cascader {
             height: inherit;

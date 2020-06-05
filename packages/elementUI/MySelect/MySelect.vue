@@ -169,7 +169,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "css/mixins";
+    @import "../../../css/mixins";
     .MySelect {
         /deep/ .el-popper[x-placement^="bottom"] {
             margin-top: 0;

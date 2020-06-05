@@ -180,7 +180,7 @@
      * 需要注意的事项（无）
      */
     import Main from 'js-utils-common'
-    import MyBtn from "../MyBtn";
+    import MyBtn from "../../MyBtn";
     import { Table, TableColumn } from "element-ui"
     export default {
         name: "MyTable",

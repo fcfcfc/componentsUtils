@@ -67,7 +67,7 @@
      * 2.如需做文件的大小校验，可以将autoUpload设为false，在getCurrentFile这个监听中做完校验后调用startUpload方法
      * 3.该组件只支持单文件上传！
      */
-    import MyBtn from '../MyBtn'
+    import MyBtn from '../../MyBtn'
     import Main from "js-utils-common";
     import { Upload } from "element-ui"
     export default {
