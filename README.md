@@ -6,7 +6,7 @@
   - [全部引用](#全部引用)   
   - [按需引用](#按需引用)   
 - [常用的scss的mixins](#常用的scss的mixins)  
-- [引用的scss-flex插件](#引用的scss-flex插件)  
+- [scss-flex](#引用的scss-flex插件)  
   - [安装](#安装)  
   - [引用](#引用)  
   - [示例](#示例)
@@ -14,9 +14,11 @@
     - [写在父项目的属性](#写在父项目的属性)  
     - [写在子项目的属性](#写在子项目的属性)  
 - [组件介绍](#组件介绍)  
-  - [eCharts组件](#echarts组件)  
   - [elementUI组件](#elementui组件)  
   - [其它组件](#其它组件)  
+    - [CollapseTransition-折叠展开动画](#CollapseTransition)
+    - [ComponentFadeOutIn-显示隐藏的Vue过渡状态](#ComponentFadeOutIn)
+  - [eCharts组件](#echarts组件)  
 ## 安装  
 ```sh
 $ npm install --save vue-component-utils
@@ -53,6 +55,26 @@ import { MyAudio } from "vue-component-utils";
 Vue.use(MyAudio);
 ```  
 ## 常用的scss的mixins
+#### 全局引入
+在vue.config.js中设置如下
+```sh
+chainWebpack: config => {
+    const oneOfsMap = config.module.rule('scss').oneOfs.store
+    oneOfsMap.forEach(item => {
+        item
+            .use('sass-resources-loader')
+            .loader('sass-resources-loader')
+            .options({
+                resources: [
+                    './node_modules/vue-component-utils/css/mixins.scss'
+                ]
+            })
+            .end()
+    })
+}
+```  
+#### 使用
+参考文件内的注释
 ## 引用的scss-flex插件
 #### 安装
 ```sh
@@ -131,12 +153,28 @@ require('scss-flex');
 ###### flex-box: 自定义项目的放大或者缩小比例    
 - 0~10  
 ## 组件介绍  
-### eCharts组件  
-
----
 ### elementUI组件  
 
 ---
 ### 其它组件  
-
+#### CollapseTransition  
+###### 示例
+```sh
+<collapse-transition>
+    <div>内容</div>
+</collapse-transition>
+```  
+###### 配置参数  
+参数名 | 类型 | 默认值 | 含义
+:------: | :-----: | :------: | -----
+dimension | String | 纵向 | 横向收缩还是纵向收缩，设置为'width'时变为横向
+duration | Number | 300 | 动画时长，毫秒
+#### ComponentFadeOutIn  
+###### 示例
+```sh
+<component-fade-out-in>
+    <div>内容</div>
+</component-fade-out-in>
+```  
 ---
+### eCharts组件  

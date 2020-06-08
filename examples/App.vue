@@ -6,8 +6,6 @@
         <component-fade-out-in>
             <div>2.ComponentFadeOutIn</div>
         </component-fade-out-in>
-        <div>3.KeepOnRecordDom</div>
-        <keep-on-record/>
         <div>4.MyAudio</div>
         <my-audio/>
         <div>5.MyBtn</div>
