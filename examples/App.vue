@@ -6,8 +6,10 @@
         <component-fade-out-in>
             <div>2.ComponentFadeOutIn</div>
         </component-fade-out-in>
-        <div>4.MyAudio</div>
+        <div>3.MyAudio</div>
         <my-audio/>
+        <div>4.MyBackTop</div>
+        <my-back-top/>
         <div>5.MyBtn</div>
         <my-btn background-color-hover="red" :not-used="notUsed" @myClick="notUsed=true"/>
         <div>6.MyCheckbox</div>
@@ -33,7 +35,7 @@
         <my-save-to-p-d-f/>
         <div>14.MySendMessageBox</div>
         <my-send-message-box/>
-        <div>15.MySwiper</div>
+        /////todo:<div>15.MySwiper</div>
         <my-swiper/>
         <div>16.MyVideo</div>
         <my-video/>
@@ -249,13 +251,6 @@
                         ]
                     }
                 ]"/>
-        <div>30.MyBackTop</div>
-        <my-back-top/>
-        <div>31.EChartsBarType1</div>
-        <div>32.EChartsBarType2</div>
-        <div>33.EChartsBarType3</div>
-        <div>34.EChartsLineType1</div>
-        <div>35.EChartsRadarType1</div>
     </div>
 </template>
 

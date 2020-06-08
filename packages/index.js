@@ -27,11 +27,6 @@ import MyToolTip from "./MyToolTip";
 import VerticalNavMenu from "./VerticalNavMenu";
 import MyTree from "./MyTree";
 import MyBackTop from "./MyBackTop";
-import EChartsBarType1 from "./EChartsBarType1";
-import EChartsBarType2 from "./EChartsBarType2";
-import EChartsBarType3 from "./EChartsBarType3";
-import EChartsLineType1 from "./EChartsLineType1";
-import EChartsRadarType1 from "./EChartsRadarType1";
 const components = [
     ComponentFadeOutIn,
     MyAudio,
@@ -61,12 +56,7 @@ const components = [
     MyToolTip,
     VerticalNavMenu,
     MyTree,
-    MyBackTop,
-    EChartsBarType1,
-    EChartsBarType2,
-    EChartsBarType3,
-    EChartsLineType1,
-    EChartsRadarType1
+    MyBackTop
 ]
 const install = function (Vue, opts = {}) {
     components.map(component => {
@@ -107,10 +97,5 @@ export default {
     MyToolTip,
     VerticalNavMenu,
     MyTree,
-    MyBackTop,
-    EChartsBarType1,
-    EChartsBarType2,
-    EChartsBarType3,
-    EChartsLineType1,
-    EChartsRadarType1
+    MyBackTop
 }

@@ -27,13 +27,12 @@
      */
     /**
      * 该组件的配置项
-     * inputHoverBorderColor:input在hover时的border颜色
      * format:显示在输入框中的格式，默认为yyyy-MM-dd
-     * width:自定义宽度(带单位)
-     * height:自定义高度，默认为48px
      * initValue:初始值，开始时间和结束时间数组，比如[new Date(), new Date()]
      * disableMaxDate:禁用的最大日期，默认不禁用，需要禁用时传入new Date()可以解析的字符串
      * disableMinDate:禁用的最小日期，默认不禁用，需要禁用时传入new Date()可以解析的字符串
+     * width:自定义宽度(带单位)
+     * height:自定义高度，默认为48px
      * inputHoverBorderColor:输入框在hover时的边框颜色
      */
     /**

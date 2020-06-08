@@ -1,6 +1,6 @@
 {
   "name": "vue-component-utils",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": false,
   "description": "封装的vue组件和可自定义的elementui组件",
   "main": "lib/index/index.js",
@@ -13,7 +13,6 @@
   "dependencies": {
     "@antv/g6": "^3.4.10",
     "core-js": "^3.6.4",
-    "echarts": "^4.8.0",
     "element-ui": "^2.13.2",
     "flv.js": "^1.5.0",
     "html2canvas": "^1.0.0-rc.5",
