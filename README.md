@@ -25,7 +25,7 @@
     - [MyAudio-html5的audio标签](#MyAudio)
     - [MyBtn-div组成的button](#MyBtn)
     - [MyFlowChart-可自定义的流程图（暂时为demo）](#MyFlowChart)
-    - [MyFlvVideo-基于flv.js的播放器](#MyFlvVideo)____
+    - [MyFlvVideo-基于flv.js的播放器](#MyFlvVideo)
     - [MyMask-可自定义的全屏遮罩](#MyMask)
     - [MyQRCode-可生成带有logo的二维码](#MyQRCode)
     - [MySaveToPDF-将指定DOM转为PDF后下载或者打印](#MySaveToPDF)
