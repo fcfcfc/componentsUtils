@@ -67,6 +67,10 @@ Vue.use(MyAudio);
 ```  
 ## 常用的scss的mixins
 #### 全局引入
+安装如下依赖
+```sh
+npm install sass-resources-loader
+```
 在vue.config.js中设置如下
 ```sh
 chainWebpack: config => {

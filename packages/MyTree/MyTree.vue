@@ -491,6 +491,7 @@
             },
             goToFilter(val) {
                 this.$refs.myTree.filter(val);
+                this.$nextTick(() => this.setOtherOptions());
             },
             appendChild(childData, fatherId) {
                 this.$refs.myTree.append(childData, fatherId);
