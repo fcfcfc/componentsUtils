@@ -613,6 +613,6 @@ slidesPerView | Number | 1 | 设置slider容器能够同时显示的slides数量
 slideToIndex | 滑动到指定index | index | 要滑动到的slide的index | -
 ## 写在最后  
 个人开发和维护，有需求或者bug请联系我的邮箱，看到后会第一时间回复   
-Email：323247568@qq.com
+Email：323247568@qq.com   
 ![支持一下！](https://raw.githubusercontent.com/fcfcfc/myImg/master/wx.jpg)
 ![支持一下！](https://raw.githubusercontent.com/fcfcfc/myImg/master/zfb.jpg)
