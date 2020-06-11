@@ -22,7 +22,6 @@
      */
     /**
      * 该组件的配置项
-     * $inputHoverBorderColor:input在hover时的border颜色
      * options:下拉选项数组，包含的对象为{
                                            label:显示的文字
                                            value:对应的值
@@ -60,7 +59,7 @@
      */
     import { Cascader } from 'element-ui'
     export default {
-        name: "MyCascader",
+        name: "MyCascade",
         components: {
             Cascader
         },

@@ -35,13 +35,12 @@
         <my-save-to-p-d-f/>
         <div>14.MySendMessageBox</div>
         <my-send-message-box/>
-        /////todo:<div>15.MySwiper</div>
-        <my-swiper/>
+        <div>15.MySwiper</div>
+        <my-swiper :slides-per-view="'auto'"/>
         <div>16.MyVideo</div>
         <my-video/>
-        <div>17.MyCascader</div>
-        <my-cascader :if-disable="true" input-hover-border-color="#000"/>
-        <div>18.MyDialog</div>
+        <div>17.MyCascade</div>
+        <my-cascade :if-disable="true" input-hover-border-color="#000"/>
         <my-dialog :if-show="false" title="MyDialog" :closeFn="()=>{}">
             <div>18.MyDialog</div>
         </my-dialog>
@@ -51,7 +50,7 @@
         <my-pagination :total="25" select-active-item-color="yellow" pagination-bgc-active-color="blue" pagination-border-hover-color="red"/>
         <div>21.MySelect</div>
         <my-select input-hover-border-color="#000" select-active-item-color="red" :options="[{value:1,label:123123}]"/>
-        <div>22.MyUpload</div>
+        //todo:<div>22.MyUpload</div>
         <my-upload color="red" background-color-hover="green" background-color="gray"/>
         <div>23.MyProgress</div>
         <my-progress :percentage="20" color="blue"/>
@@ -193,64 +192,45 @@
 
         />
         <div>29.MyTree</div>
-        <my-tree active-item-bg-color="red"
-                 active-item-font-color="blue"
-                 items-hover-bgc="yellow"
-                :show-left-triangle="true"
-                 :not-triangle="true"
-                 :tree-data="[
-                    {
-                        id: 1,
-                        isSelected: false,
-                        toUrl: 'home',
-                        label: '首页',
-                        iconUrl: '1',
-                        children: [],
-                    },
-                    {
-                        id: 2,
-                        isSelected: false,
-                        label: '基础参数维护',
-                        iconUrl: '2',
-                        children: [
-                            {
-                                id: 20,
-                                isSelected: false,
-                                toUrl: 'interrogation',
-                                label: '问诊项目',
-                                children: []
-                            },
-                            {
-                                id: 21,
-                                isSelected: false,
-                                toUrl: 'physicalExamination',
-                                label: '体格检查项目',
-                                children: []
-                            },
-                            {
-                                id: 22,
-                                isSelected: false,
-                                toUrl: 'auxiliary',
-                                label: '辅助项目检查',
-                                children: []
-                            },
-                            {
-                                id: 23,
-                                isSelected: false,
-                                toUrl: 'treatment',
-                                label: '治疗项目',
-                                children: []
-                            },
-                            {
-                                id: 24,
-                                isSelected: false,
-                                toUrl: 'case',
-                                label: '病例分类',
-                                children: []
-                            }
-                        ]
-                    }
-                ]"/>
+        <my-tree :treeData="treeData"
+                 ref="myTree"
+                 :itemPaddingLeft="15"
+                 itemMarginRight="17px"
+                 :diyFilterFn="myFilterFn"
+                 itemMarginLeft="7px"
+                 activeItemBgColor="#eaeff0"
+                 :itemChildExtraPaddingLeft="29"
+                 leftTrianglePadding="0px"
+                 :changeStatusNameArr="['isSelected']"
+                 :showLeftTriangle="true"
+                 :notTriangle="true"
+                 :notBorderLeft="true"
+                 :notBorderRight="true">
+            <template v-slot:default="slotProps">
+                <div class="treeItem" flex="cross:center box:first">
+                    <div flex="cross:center">
+                        <div class="treeItemText">{{ slotProps.childrenInfo.label }}</div>
+                        <div v-if="slotProps.childrenInfo.hasIcon" class="treeItemIcon"></div>
+                    </div>
+                    <div class="operateDom" :class="{'isSelected': slotProps.childrenInfo.isSelected}">
+                        <div flex="cross:center main:right">
+                            <div v-if="slotProps.childrenInfo.ifFather" flex="cross:center">
+                                <div class="addIcon"></div>
+                                <div class="addText">添加</div>
+                            </div>
+                            <div flex="cross:center">
+                                <div class="editIcon"></div>
+                                <div class="editText">编辑</div>
+                            </div>
+                            <div flex="cross:center">
+                                <div class="deleteIcon"></div>
+                                <div class="deleteText">删除</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </my-tree>
     </div>
 </template>
 
@@ -259,7 +239,63 @@
         name: 'App',
         data() {
             return {
-                notUsed: false
+                myFilterFn: (val, data) => {
+                    let flag;
+                    if(data.ifFather) {
+                        flag = data.label.indexOf(val) !== -1 || data.children.filter(item => item.label.indexOf(val) !== -1).length > 0;
+                    } else {
+                        flag = data.label.indexOf(val) !== -1;
+                    }
+                    return flag;
+                },
+                notUsed: false,
+                treeData: [
+                    {
+                        id: 1,
+                        ifDIYContent1: true,
+                        ifFather: true,
+                        label: '影像学',
+                        isSelected: false,
+                        children: [
+                            {
+                                id: 10,
+                                ifFather: false,
+                                ifDIYContent1: true,
+                                label: '血液学',
+                                isSelected: false,
+                                hasIcon: false,
+                                children: []
+                            },
+                            {
+                                id: 11,
+                                ifFather: false,
+                                ifDIYContent1: true,
+                                label: '红细胞沉降率',
+                                isSelected: false,
+                                hasIcon: true,
+                                children: []
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        ifFather: true,
+                        ifDIYContent1: true,
+                        label: '实验室检验',
+                        isSelected: false,
+                        children: [
+                            {
+                                id: 20,
+                                ifFather: false,
+                                ifDIYContent1: true,
+                                label: '血常规',
+                                isSelected: false,
+                                hasIcon: true,
+                                children: []
+                            }
+                        ]
+                    }
+                ]
             }
         },
         methods: {}

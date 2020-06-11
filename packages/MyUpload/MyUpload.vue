@@ -7,7 +7,7 @@
             :multiple="false"
             :show-file-list="false"
             :accept="accept"
-            action="#"
+            placeholder action="#"
             :http-request="httpRequest"
             :on-change="changeFn"
             :file-list="fileList"
