@@ -50,7 +50,7 @@
         <my-pagination :total="25" select-active-item-color="yellow" pagination-bgc-active-color="blue" pagination-border-hover-color="red"/>
         <div>21.MySelect</div>
         <my-select input-hover-border-color="#000" select-active-item-color="red" :options="[{value:1,label:123123}]"/>
-        //todo:<div>22.MyUpload</div>
+        <div>22.MyUpload</div>
         <my-upload color="red" background-color-hover="green" background-color="gray"/>
         <div>23.MyProgress</div>
         <my-progress :percentage="20" color="blue"/>
@@ -254,14 +254,14 @@
                         id: 1,
                         ifDIYContent1: true,
                         ifFather: true,
-                        label: '影像学',
+                        label: '影像',
                         isSelected: false,
                         children: [
                             {
                                 id: 10,
                                 ifFather: false,
                                 ifDIYContent1: true,
-                                label: '血液学',
+                                label: '血液',
                                 isSelected: false,
                                 hasIcon: false,
                                 children: []
@@ -270,7 +270,7 @@
                                 id: 11,
                                 ifFather: false,
                                 ifDIYContent1: true,
-                                label: '红细胞沉降率',
+                                label: '红细胞',
                                 isSelected: false,
                                 hasIcon: true,
                                 children: []
@@ -281,14 +281,14 @@
                         id: 2,
                         ifFather: true,
                         ifDIYContent1: true,
-                        label: '实验室检验',
+                        label: '实验室',
                         isSelected: false,
                         children: [
                             {
                                 id: 20,
                                 ifFather: false,
                                 ifDIYContent1: true,
-                                label: '血常规',
+                                label: '常规',
                                 isSelected: false,
                                 hasIcon: true,
                                 children: []
