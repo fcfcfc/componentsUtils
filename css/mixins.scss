@@ -120,6 +120,7 @@
 @mixin ellipsisByLineNumber($lines: 1) {
   text-overflow: ellipsis;
   display: -webkit-box;
+  word-break:break-all;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $lines;
