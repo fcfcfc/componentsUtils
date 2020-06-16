@@ -216,3 +216,8 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+    .collapseTransition {
+
+    }
+</style>
