@@ -1,6 +1,6 @@
 {
   "name": "vue-component-utils",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "private": false,
   "description": "封装的vue组件和可自定义的elementui组件",
   "main": "lib/index/index.js",

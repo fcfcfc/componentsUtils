@@ -78,6 +78,9 @@
         methods: {
             slideToIndex(index) {
                 this.swiper.slideTo(index)
+            },
+            updateSize() {
+                this.swiper.updateSize()
             }
         }
     }
