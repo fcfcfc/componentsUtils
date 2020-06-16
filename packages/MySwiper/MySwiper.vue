@@ -1,6 +1,6 @@
 <template>
     <swiper :options="swiperOption" ref="mySwiper">
-        <swiper-slide v-for="(item, index) in slidesArr" :key="item.id">
+        <swiper-slide :style="{'width': slideWidth}" v-for="(item, index) in slidesArr" :key="item.id">
             <slot :itemInfo="{item, index}"/>
         </swiper-slide>
     </swiper>
@@ -49,16 +49,25 @@
             slidesPerView: {
                 type: [Number, String],
                 default: 1
+            },
+            freeMode: {
+                type: Boolean,
+                default: false
+            },
+            slideWidth: {
+                type: String,
+                default: ''
             }
         },
         computed: {
             swiper() {
-                return this.$refs.mySwiper.swiper || {}
+                return this.$refs.mySwiper.$swiper || {}
             }
         },
         data() {
             return {
                 swiperOption: {
+                    freeMode: this.freeMode,
                     slidesPerView: this.slidesPerView,
                     on:{
                         transitionEnd: () => this.$emit('getCurrentActiveIndex', this.swiper.activeIndex || 0),

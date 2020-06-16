@@ -315,7 +315,7 @@ ifShow | Boolean | false（不显示） | 是否显示
 ```sh
 <my-input ref="myInput" type="text" @changeValue="val=>{}"/>
 ---
-this.$ref.myInput.focusFn()
+this.$refs.myInput.focusFn()
 ```  
 ###### 配置参数  
 参数名 | 类型 | 默认值 | 含义
@@ -362,7 +362,7 @@ focusFn | 使 input 获取焦点 | - | - | -
 ```sh
 <my-pagination ref="myPagination" :total="0" @pageInfoChange="pageInfo=>{}"/>
 ---
-this.$ref.myPagination.setFlagFalse()
+this.$refs.myPagination.setFlagFalse()
 ```  
 ###### 配置参数  
 参数名 | 类型 | 默认值 | 含义
@@ -412,7 +412,7 @@ inputHoverBorderColor | String | '' | 输入框在hover时的边框颜色
 ```sh
 <my-upload ref="myUpload" :ifDisable="false" @uploadError="()=>{}"/>
 ---
-this.$ref.myUpload.cancelUpload()
+this.$refs.myUpload.cancelUpload()
 ```  
 ###### 配置参数  
 参数名 | 类型 | 默认值 | 含义
@@ -577,7 +577,7 @@ spanColorChecked | String | '' | 选中时label的文字颜色，需要配合spa
           ]">
 </my-table>
 ---
-this.$ref.myTable.getTableData()
+this.$refs.myTable.getTableData()
 ```  
 ###### 配置参数  
 参数名 | 类型 | 默认值 | 含义
@@ -1014,7 +1014,7 @@ duration | Number | 300 | 动画时长，毫秒
 ```sh
 <my-audio ref="myAudio" audioSrc="src" @audioEnd="()=>{}"/>
 ---
-this.$ref.myAudio.playAudio()
+this.$refs.myAudio.playAudio()
 ```  
 ###### 配置参数  
 参数名 | 类型 | 默认值 | 含义
@@ -1059,7 +1059,7 @@ alwaysUse | Boolean | false（不启用） | 是否在notUsed设置为true时还
 ```sh
 <my-flv-video ref="myFlvVideo" audioSrc="src" @endedEvent="()=>{}"/>
 ---
-this.$ref.myFlvVideo.play()
+this.$refs.myFlvVideo.play()
 ```  
 ###### 配置参数  
 参数名 | 类型 | 默认值 | 含义
@@ -1084,7 +1084,7 @@ destroyFn | 组件的销毁 | - | - | -
 ```sh
 <my-video ref="myVideo" audioSrc="src" @endedEvent="()=>{}"/>
 ---
-this.$ref.myVideo.play()
+this.$refs.myVideo.play()
 ```  
 ###### 配置参数  
 参数名 | 类型 | 默认值 | 含义
@@ -1157,7 +1157,7 @@ printPDFFn | 将指定DOM转为PDF后打印 | dom | 要转换的dom | - | - | -
 ```sh
 <my-send-message-box ref="mySendMessageBox" audioSrc="src" @endedEvent="()=>{}"/>
 ---
-this.$ref.mySendMessageBox.sendSmsSuccess()
+this.$refs.mySendMessageBox.sendSmsSuccess()
 ```  
 ###### 配置参数  
 参数名 | 类型 | 默认值 | 含义
@@ -1181,7 +1181,7 @@ sendSmsFail | 调接口失败后调用此方法，重置为初始状态 | - | - 
 ```sh
 <my-swiper ref="mySwiper" :slidesArr="[]" @getCurrentActiveIndex="activeIndex=>{}"/>
 ---
-this.$ref.mySwiper.slideToIndex(index)
+this.$refs.mySwiper.slideToIndex(index)
 ```  
 ###### 插槽
 ```sh
@@ -1193,12 +1193,14 @@ this.$ref.mySwiper.slideToIndex(index)
 :------: | :-----: | :------: | -----
 slidesArr | Array | [] | slide数组
 slidesPerView | Number | 1 | 设置slider容器能够同时显示的slides数量，可设的值为number值或者auto
+freeMode | Boolean | false（普通模式） | 普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动可能不止一格且不会贴合。
+slideWidth | String | '' | 强制改变slide的宽度
 ###### 监听方法  
 **_getCurrentActiveIndex_**：监听activeIndex值的变化，返回activeIndex
 ###### 组件方法  
-方法名 | 方法功能 | 参数1 | 参数1含义 | 返回值
-:------: | ----- | :------: | :-----: | ------
-slideToIndex | 滑动到指定index | index | 要滑动到的slide的index | -
+方法名 | 方法功能 | 参数1 | 参数1含义 | 参数2 | 参数2含义 | 返回值
+:------: | ----- | :------: | :-----: | :------: | :-----: | ------
+slideToIndex | 滑动到指定index | index | 要滑动到的slide的index | - | - | -
 ## 写在最后  
 个人开发和维护，有需求或者bug请联系我的邮箱，看到后会第一时间回复   
 Email：323247568@qq.com   
