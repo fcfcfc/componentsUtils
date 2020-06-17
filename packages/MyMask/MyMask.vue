@@ -1,6 +1,6 @@
 <template>
     <div class="myMask" flex="main-cross:center" :style="{'background-color':  bgcColor}">
-        <div id="myMaskContent" class="myMaskContent" :style="{'width': width, 'top': initTop}">
+        <div :class="{'hideShadow': hideShadow}" id="myMaskContent" class="myMaskContent" flex="dir:top box:first" :style="{'width': width, 'top': initTop}">
             <div id="myMaskTitleDom" class="myMaskTitleDom" flex="main:between cross:center box:last">
                 <div class="myMaskTitle" @mousedown="mousedown">
                     <slot name="title"/>
@@ -59,6 +59,10 @@
             bgcColor: {
                 type: String,
                 default: 'rgba(#FFFFFF, .6)'
+            },
+            hideShadow: {
+                type: Boolean,
+                default: false
             }
         },
         methods: {
@@ -92,6 +96,9 @@
         .myMaskContent {
             @include setWebkit(box-shadow, rgba(0, 0, 0, .5) 0px 0px 10px);
             position: absolute;
+            &.hideShadow {
+                box-shadow: none;
+            }
             .myMaskTitleDom {
                 width: 100%;
                 .myMaskTitle {

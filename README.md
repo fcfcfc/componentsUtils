@@ -1111,6 +1111,7 @@ width | String | '450px' | 弹出框的宽度
 minTop | Number | 0 | 允许拖拽的最大高度
 initTop | String | ''（居中） | 初始top值
 bgcColor | String | 'rgba(#FFFFFF, .6)' | 遮罩背景颜色
+hideShadow | Boolean | false（不取消） | 取消阴影
 #### MyQRCode  
 ###### 示例
 ```sh

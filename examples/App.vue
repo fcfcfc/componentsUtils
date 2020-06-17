@@ -26,7 +26,7 @@
         <div>9.MyFlvVideo</div>
         <my-flv-video/>
         <div>10.MyMask</div>
-        <my-mask v-show="false"/>
+        <my-mask v-show="true"/>
         <div>11.MyQRCode</div>
         <my-q-r-code/>
         <div>12.MyRate</div>
