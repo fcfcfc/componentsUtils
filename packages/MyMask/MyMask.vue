@@ -1,5 +1,5 @@
 <template>
-    <div class="myMask" flex="main-cross:center">
+    <div class="myMask" flex="main-cross:center" :style="{'background-color':  bgcColor}">
         <div id="myMaskContent" class="myMaskContent" :style="{'width': width, 'top': initTop}">
             <div id="myMaskTitleDom" class="myMaskTitleDom" flex="main:between cross:center box:last">
                 <div class="myMaskTitle" @mousedown="mousedown">
@@ -55,6 +55,10 @@
             initTop: {
                 type: String,
                 default: ''
+            },
+            bgcColor: {
+                type: String,
+                default: 'rgba(#FFFFFF, .6)'
             }
         },
         methods: {
