@@ -139,10 +139,7 @@
                 content: '123'
             }
         ]"/>
-        <my-tool-tip content="MyToolTip" position="left-end">
-            <div>27.MyToolTip</div>
-        </my-tool-tip>
-        <div>28.VerticalNavMenu</div>
+        <div>27.VerticalNavMenu</div>
         <vertical-nav-menu width="260px"
                            item-height="44px"
                            icon-margin-right="6px"
@@ -203,7 +200,7 @@
                            :if-use-active-bgc1="true"
 
         />
-        <div>29.MyTree</div>
+        <div>28.MyTree</div>
         <my-tree :treeData="treeData"
                  ref="myTree"
                  :itemPaddingLeft="15"

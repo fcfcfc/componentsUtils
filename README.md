@@ -29,7 +29,6 @@
     - [MyRadio-Radio组件](#MyRadio)
     - [MyTable-Table组件](#MyTable)
     - [MyTimeline-可视化地呈现时间流信息](#MyTimeline)
-    - [MyToolTip-鼠标hover时的提示信息](#MyToolTip)
     - [VerticalNavMenu-侧边垂直菜单，可内嵌子菜单](#VerticalNavMenu)
     - [MyTree-树形控件](#MyTree)
   - [其它组件](#其它组件)  
@@ -702,19 +701,6 @@ getTableData | 获取当前table的tableData | - | - | tableData
 参数名 | 类型 | 默认值 | 含义
 :------: | :-----: | :------: | -----
 activities | Array | [] | 展示的数据数组,数组中的对象为{width:自定义宽度（带单位），默认为100%，content:显示的内容}
-#### MyToolTip  
-###### 示例
-```sh
-<my-tool-tip content="MyToolTip" position="left-end">
-    <div>MyToolTip</div>
-</my-tool-tip>
-```  
-###### 配置参数  
-参数名 | 类型 | 默认值 | 含义
-:------: | :-----: | :------: | -----
-theme | String | 'dark' | 主题，暂时可选值为dark和light
-content | String | '' | 显示的内容
-position | String | '' | 位置，方向-对齐位置，四个方向：top、left、right、bottom；三种对齐位置：start, end。如"left-end"
 #### VerticalNavMenu  
 ###### 示例
 ```sh

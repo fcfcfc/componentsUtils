@@ -23,7 +23,6 @@ import MyProgress from "./MyProgress";
 import MyRadio from "./MyRadio";
 import MyTable from "./MyTable";
 import MyTimeline from "./MyTimeline";
-import MyToolTip from "./MyToolTip";
 import VerticalNavMenu from "./VerticalNavMenu";
 import MyTree from "./MyTree";
 import MyBackTop from "./MyBackTop";
@@ -53,7 +52,6 @@ const components = [
     MyRadio,
     MyTable,
     MyTimeline,
-    MyToolTip,
     VerticalNavMenu,
     MyTree,
     MyBackTop
@@ -94,7 +92,6 @@ export default {
     MyRadio,
     MyTable,
     MyTimeline,
-    MyToolTip,
     VerticalNavMenu,
     MyTree,
     MyBackTop
