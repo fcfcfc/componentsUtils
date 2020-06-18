@@ -264,7 +264,6 @@
                 color: #333333;
                 padding: 12px 15px;
                 line-height: 1.6;
-                border-radius: 0;
                 border-color: #cdcdcd;
             }
         }
