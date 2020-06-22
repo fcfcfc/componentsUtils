@@ -1,6 +1,6 @@
 <template>
     <div class="myMask" flex="main-cross:center" :style="{'background-color':  bgcColor}">
-        <div :class="{'hideShadow': hideShadow}" id="myMaskContent" class="myMaskContent" flex="dir:top box:first" :style="{'width': width, 'top': initTop}">
+        <div :class="{'hideShadow': hideShadow}" :id="myMaskContent" class="myMaskContent" flex="dir:top box:first" :style="{'width': width, 'top': initTop}">
             <div :id="myMaskTitleDom" class="myMaskTitleDom" flex="main:between cross:center box:last">
                 <div class="myMaskTitle" @mousedown="mousedown">
                     <slot name="title"/>
@@ -67,12 +67,13 @@
         },
         data() {
             return {
-                myMaskTitleDom: `myMaskTitleDom${new Date().getTime()}`
+                myMaskTitleDom: `myMaskTitleDom${new Date().getTime()}`,
+                myMaskContent: `myMaskContent${new Date().getTime()}`
             }
         },
         methods: {
             mousedown(event) {
-                let selectElement = document.getElementById('myMaskContent');
+                let selectElement = document.getElementById(this.myMaskContent);
                 let myMaskTitleDom = document.getElementById(this.myMaskTitleDom);
                 let distanceX = event.clientX - selectElement.offsetLeft;
                 let distanceY = event.clientY - selectElement.offsetTop;
