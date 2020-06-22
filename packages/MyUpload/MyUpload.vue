@@ -217,9 +217,6 @@
                 this.cancelUpload()
             },
             errorFn(err) {
-                // eslint-disable-next-line no-console
-                console.log(err);
-                if(!this.fileToBase64) Main.myAlert(err);
                 this.$emit('uploadError');
                 this.cancelUpload()
             },
