@@ -1089,7 +1089,20 @@ play | 播放 | - | - | -
 pause | 暂停播放 | - | - | -
 destroy | 组件的销毁 | - | - | -
 ###### 注意事项  
-1. 在父组件中监听onPlayerReady成功后调用此组件的play方法进行播放
+1. 需要在模版文件引入以下   
+   ```sh
+    <link href="https://unpkg.zhimg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+    <script src="https://unpkg.zhimg.com/video.js/dist/video.min.js"></script>
+   ```    
+2. 在vue.config.js中需要如下配置   
+    ```sh
+    configureWebpack: config => {
+      config.externals = {
+          'videojs': 'videojs'
+      }
+    }
+    ```    
+3. 在父组件中监听onPlayerReady成功后调用此组件的play方法进行播放
 #### MyMask  
 ###### 示例
 ```sh
