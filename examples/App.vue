@@ -26,7 +26,7 @@
         <div>9.MyFlvVideo</div>
         <my-flv-video/>
         <div>10.MyMask</div>
-        <my-mask v-show="true"/>
+        <my-mask v-show="false"/>
         <div>11.MyQRCode</div>
         <my-q-r-code/>
         <div>12.MyRate</div>
@@ -57,7 +57,16 @@
             <div>18.MyDialog</div>
         </my-dialog>
         <div>19.MyInput</div>
-        <my-input :if-disabled="true" input-hover-border-color="red"/>
+        <my-input height="100%"
+                  :disableEnterEvent="true"
+                  :textarea-use-height="true"
+                  :ifDisableClearIcon="true"
+                  type="textarea"
+                  paddingLeft="15px"
+                  fontColor="#666666"
+                  :maxLength="500"
+                  paddingRight="15px"
+                  :ifDisableBorder="false"/>
         <div>20.MyPagination</div>
         <my-pagination :total="25" select-active-item-color="yellow" pagination-bgc-active-color="blue" pagination-border-hover-color="red"/>
         <div>21.MySelect</div>

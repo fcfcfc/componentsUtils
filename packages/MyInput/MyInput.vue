@@ -235,7 +235,7 @@
 
 <style lang="scss" scoped>
     .myInput {
-        &.disableBorder /deep/ .el-input__inner {
+        &.disableBorder /deep/ .el-input__inner, &.disableBorder /deep/ .el-textarea__inner {
             border: none;
         }
         &.disableClearIcon /deep/ .el-input__suffix {
