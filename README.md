@@ -320,32 +320,40 @@ this.$refs.myInput.focusFn()
 参数名 | 类型 | 默认值 | 含义
 :------: | :-----: | :------: | -----
 ifDisabled | Boolean | false（不禁用） | 是否禁用
-initValue | String, Number | - | 初始值
 extraInfo | String, Object, Array, Number | - | 自定义扩展信息，设置后在监听中会和输入框的值一起返回
-rows | Number | 2 | 输入框行数，只对 type="textarea" 有效
-placeholder | String | '' | 输入框占位文本
 disableEnterEvent | Boolean | false（不禁用） | 是否禁用回车监听
 autoComplete | String | '' | 原生属性，自动补全，设置为new-password可以解决Firefox上密码输入框会自动填充密码的问题
 textareaUseHeight | Boolean | false（不使用） | textarea是否也使用height参数控制高度
+textareaOverFlowHidden | Boolean | false（不显示） | 文本域是否显示滚动条
+ifDisableBorder | Boolean | false（显示） | 是否不显示边框
+textCenterInput | Boolean | false（不居中） | 输入框内的文字是否居中显示
+ifDisableClearIcon | Boolean | false（不禁用） | 是否禁用删除小图标
+textareaAutoHeightByContent | Boolean | false（不变化） | 文本域的高度是否随内容变化
 
 参数名 | 类型 | 默认值 | 含义
 :------: | :-----: | :------: | -----
 type | String | 'text' | 原生 input 的 type 值
 maxlength | Number | - | 原生属性，最大输入长度
 ifAutofocus | Boolean | false（不自动获取焦点） | 原生属性，自动获取焦点
+initValue | String, Number | - | 初始值
+rows | Number | 2 | 输入框行数，只对 type="textarea" 有效
+placeholder | String | '' | 输入框占位文本
 
 参数名 | 类型 | 默认值 | 含义
 :------: | :-----: | :------: | -----
 width | String | - | 宽度
 height | String | '48px' | 高度
+textareaMinHeight | String | '46px' | 文本域的最低高度
 paddingLeft | String | '' | 输入框的padding-left
 paddingRight | String | '' | 输入框的padding-right
+paddingTop | String | '' | 输入框的padding-top
+paddingBottom | String | '' | 输入框的padding-bottom
+
+参数名 | 类型 | 默认值 | 含义
+:------: | :-----: | :------: | -----
 fontColor | String | '' | 文字颜色
 backgroundColor | String | '#FFFFFF' | 输入框背景颜色
 inputHoverBorderColor | String | '' | 输入框在hover时的边框颜色
-ifDisableBorder | Boolean | false（显示） | 是否不显示边框
-textCenterInput | Boolean | false（不居中） | 输入框内的文字是否居中显示
-ifDisableClearIcon | Boolean | false（不禁用） | 是否禁用删除小图标
 ###### 监听方法  
 1. **_changeValue_**：值改变时触发，参数为input中的值，如果设置了extraInfo，参数变为{value:输入框值，info:extraInfo设置的值}
 2. **_enterEvent_**：监听键盘上的回车事件

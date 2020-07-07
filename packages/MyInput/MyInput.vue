@@ -1,10 +1,22 @@
 <template>
-    <div class="myInput" :class="newClass">
+    <div class="myInput" :style="textareaAutoHeightByContent?'position: relative;':''" :class="newClass">
+        <pre v-if="textareaAutoHeightByContent" :style="{
+            'padding-top': paddingTop,
+            'padding-Bottom': paddingBottom,
+            'padding-left': paddingLeft,
+            'padding-right': paddingRight,
+            'lineHeight': '1.6',
+            'min-height': textareaMinHeight,
+            'margin': '0'
+        }">{{input}}</pre>
         <el-input
                 :autocomplete="autoComplete"
                 :style="{
-                    'height': (type === 'textarea' ? (textareaUseHeight ? height : 'auto') : height),
-                    'width': width
+                    'height': textareaAutoHeightByContent ? '100%' : (type === 'textarea' ? (textareaUseHeight ? height : 'auto') : height),
+                    'width': textareaAutoHeightByContent ? '100%' : width,
+                    'position': textareaAutoHeightByContent ? 'absolute' : '',
+                    'top': textareaAutoHeightByContent ? '0' : 'unset',
+                    'left': textareaAutoHeightByContent ? '0' : 'unset',
                 }"
                 :autofocus="ifAutofocus"
                 ref="myInput"
@@ -16,7 +28,7 @@
                 @input="sendInputToFather()"
                 @keyup.enter.native="enterEvent()"
                 @change="changeEvent"
-                :type="type"
+                :type="textareaAutoHeightByContent ? 'textarea' : type"
                 :show-password="type === 'password'"
                 :maxlength="maxlength"
                 :disabled="ifDisabled"
@@ -90,6 +102,14 @@
                 type: String,
                 default: ''
             },
+            paddingTop: {
+                type: String,
+                default: ''
+            },
+            paddingBottom: {
+                type: String,
+                default: ''
+            },
             backgroundColor: {
                 type: String,
                 default: '#FFFFFF'
@@ -145,11 +165,23 @@
                 type: String,
                 default: ''
             },
+            textareaMinHeight: {
+                type: String,
+                default: '46px'
+            },
+            textareaOverFlowHidden: {
+                type: Boolean,
+                default: false
+            },
             fontColor: {
                 type: String,
                 default: ''
             },
-            extraInfo: [String, Object, Array, Number]
+            extraInfo: [String, Object, Array, Number],
+            textareaAutoHeightByContent: {
+                type: Boolean,
+                default: false
+            }
         },
         data() {
             return {
@@ -160,8 +192,9 @@
         computed: {
             newClass() {
                 let inputHoverBorderColor = (this.inputHoverBorderColor || '').replace(/#/g, '');
+                let textareaMinHeight = 'b_' + this.textareaMinHeight;
                 if(inputHoverBorderColor) inputHoverBorderColor = 'a_' + inputHoverBorderColor;
-                return ` ${inputHoverBorderColor} ${this.ifDisableBorder ? 'disableBorder': ''} ${this.ifDisableClearIcon ? 'disableClearIcon': ''}`
+                return `${textareaMinHeight} ${inputHoverBorderColor} ${this.ifDisableBorder ? 'disableBorder': ''} ${this.ifDisableClearIcon ? 'disableClearIcon': ''}`
             }
         },
         mounted() {
@@ -173,6 +206,9 @@
             }
             if(this.paddingLeft) myInputDom.style.paddingLeft = this.paddingLeft;
             if(this.paddingRight) myInputDom.style.paddingRight = this.paddingRight;
+            if(this.paddingTop) myInputDom.style.paddingTop = this.paddingTop;
+            if(this.paddingBottom) myInputDom.style.paddingBottom = this.paddingBottom;
+            if(this.textareaOverFlowHidden || this.textareaAutoHeightByContent) myInputDom.style.overflow = 'hidden';
             if(this.fontColor) myInputDom.style.color = this.fontColor;
             myInputDom.style.backgroundColor = this.backgroundColor;
             this.setCssRules();
@@ -180,8 +216,10 @@
         methods: {
             setCssRules() {
                 let length = document.styleSheets.length;
+                let textareaMinHeight = this.textareaMinHeight;
                 let inputHoverBorderColor = (this.inputHoverBorderColor || '').replace(/#/g, '');
                 let inputHoverBorderColorRule = '';
+                let textareaMinHeightRule = `.myInput.b_${textareaMinHeight} .el-textarea .el-textarea__inner`;
                 if(inputHoverBorderColor) {
                     inputHoverBorderColorRule = `.myInput.a_${inputHoverBorderColor} .el-textarea > textarea:hover, .myInput.a_${inputHoverBorderColor} .el-textarea.is-disabled .el-input__inner:hover, .myInput.a_${inputHoverBorderColor} .el-textarea.is-disabled .el-textarea__inner:hover, .myInput.a_${inputHoverBorderColor} .el-input.is-disabled .el-input__inner:hover, .myInput.a_${inputHoverBorderColor} .el-input.is-disabled .el-textarea__inner:hover, .myInput.a_${inputHoverBorderColor} .el-input > input:hover`;
                 }
@@ -189,10 +227,14 @@
                     //防止取到引用链接的样式，会跨域
                     if(!item.href) item.rules.forEach(rule => {
                         if(rule.selectorText === inputHoverBorderColorRule) inputHoverBorderColorRule = '';
+                        if(rule.selectorText === textareaMinHeightRule) textareaMinHeightRule = '';
                     })
                 })
                 if(inputHoverBorderColorRule) {
                     document.styleSheets[length - 1].addRule(inputHoverBorderColorRule, `border-color: ${this.inputHoverBorderColor}`)
+                }
+                if(textareaMinHeightRule) {
+                    document.styleSheets[length - 1].addRule(textareaMinHeightRule, `min-height: ${textareaMinHeight} !important`)
                 }
             },
             sendInputToFather() {
