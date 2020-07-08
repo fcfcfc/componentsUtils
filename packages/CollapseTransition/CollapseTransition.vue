@@ -9,26 +9,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * dimension:横向收缩还是纵向收缩，默认为纵向，设置为'width'时变为横向
-     * duration:动画时长，默认为300ms（不带单位）
-     */
-    /**
-     * 组件的监听方法（无）
-     */
-    /**
-     * 组件的方法（无）
-     */
-    /**
-     * 需要注意的事项（无）
-     */
     export default {
         name: "CollapseTransition",
         props: {

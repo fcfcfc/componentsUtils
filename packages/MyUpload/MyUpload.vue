@@ -24,49 +24,6 @@
     </el-upload>
 </template>
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件
-     * @/utils/components/MyBtn
-     * @/utils/js/main
-     */
-    /**
-     * 该组件的配置项
-     * color:自定义按钮文字颜色
-     * backgroundColor:自定义按钮背景颜色
-     * backgroundColorHover:自定义按钮在hover时的背景颜色
-     * uploadUrl:上传的地址
-     * accept:接受上传的文件类型（thumbnail-mode 模式下此参数无效）
-     * btnHeight:选择文件按钮高度，默认为48px
-     * btnWidth:选择文件按钮宽度，默认为180px
-     * useDiySuccess:启用上传成功的监听uploadComplete直接返回response，不做其它逻辑判断，默认不启用
-     * ifDisable:是否禁用
-     * autoUpload:是否在选取文件后立即进行上传，默认false
-     * ajaxPlugin:axios对象
-     * fileToBase64:文件是否转base64，默认不转
-     * setDiyAjaxDataFn:文件转base64时可用，设置要传给接口的指定data，参数为转好的base64编码和上传文件的后缀
-     */
-    /**
-     * 组件的监听方法
-     * uploadComplete:上传成功，如果设置了useDiySuccess，返回response，否则返回response.data
-     * uploadError:上传失败或者成功后返回的response的code不是'0000'
-     * getFileName:文件变更的监听，参数为文件的名称
-     * getCurrentFile:文件变更的监听，参数为当前文件
-     */
-    /**
-     * 组件的方法
-     * startUpload:手动开始上传
-     * cancelUpload:取消上传
-     * getFilesArr:获取当前已选择的文件数组
-     */
-    /**
-     * 需要注意的事项
-     * 1.加载此组件，只显示一个选择文件的按钮
-     * 2.如需做文件的大小校验，可以将autoUpload设为false，在getCurrentFile这个监听中做完校验后调用startUpload方法
-     * 3.该组件只支持单文件上传！
-     */
     import MyBtn from '../MyBtn'
     import Main from "js-utils-common";
     import { Upload } from "element-ui"

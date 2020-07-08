@@ -13,45 +13,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * ifDisable:是否禁用,默认值为false
-     * spanColor:自定义旁边label的文字颜色，设置后选中时文字颜色也不变
-     * ifVertical:是否改为竖向排列，默认值为false
-     * checkboxList:多选框组中每个checkbox的值的数组，比如[1,2,3]
-     * initCheckbox:初始值，要默认选择的checkbox的值的数组
-     * showCheckBackground:选中时，是否给选中的元素添加背景颜色，突出显示，默认值为false
-     * squareSize:自定义checkbox的大小（带单位）
-     * squareInnerBorderSize:自定义选中时内部对勾的厚度（带单位）
-     * squareInnerHeight:自定义选中时内部对勾的高度（带单位）
-     * squareInnerWidth:自定义选中时内部对勾的宽度（带单位）
-     * squareInnerLeft:自定义选中时内部对勾在checkbox中的相对左位置（带单位）
-     * squareInnerTop:自定义选中时内部对勾在checkbox中的相对上位置（带单位）
-     * squareBorderColor:自定义checkbox的边框颜色
-     * squareCheckedBorderColor:自定义选中时的checkbox的边框颜色
-     * squareBackgroundColor:自定义checkbox的背景颜色
-     * squareCheckedBackgroundColor:自定义选中时的checkbox的背景颜色
-     * extraInfo:自定义扩展信息，设置后会和选中的checkbox值数组一起返回
-     * fontSize:自定义字体大小，默认为18px
-     * marginBottom:自定义的margin-bottom，默认值为0
-     * marginRight:自定义的margin-right，默认值为43px
-     */
-    /**
-     * 组件的监听方法
-     * getCheckboxValue:值改变时触发，参数为选中的checkbox值数组；如果设置了extraInfo，参数变为{选中值数组，extraInfo}
-     */
-    /**
-     * 组件的方法（无）
-     */
-    /**
-     * 需要注意的事项（无）
-     */
     import { Checkbox, CheckboxGroup } from "element-ui"
     export default {
         name: "MyCheckbox",

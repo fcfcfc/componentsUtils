@@ -18,34 +18,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件
-     */
-    /**
-     * 该组件的配置项
-     * selectActiveItemColor:下拉框（选择每页条数）选中项目的字体颜色，建议设置为主题色，属于项目通用配置，会影响项目中其它下拉框
-     * paginationBorderHoverColor:自定义hover时边框的颜色
-     * paginationBgcActiveColor:自定义选中时的背景颜色
-     * total:总条目数
-     * layout:自定义组件布局，子组件名用逗号分隔，默认为'prev, pager, next, sizes, jumper'，可选'prev, pager, next, jumper, ->, total'
-     * myPageSizeArr:自定义每页条数数组，默认为[10, 20, 30, 50]
-     */
-    /**
-     * 组件的监听方法
-     * pageInfoChange:分页信息改变时会触发，{currentPageSize,pageNumber}
-     */
-    /**
-     * 组件的方法
-     * setPaginationInfo:设置当前的分页信息，包含{pageSizeIndex,pageNumber}
-     * setFlagFalse:设置flag为false（flag的作用是比如5条每页有三页，选中第三页时改成100页每条，不用flag控制会调用两次接口）
-     * goToAjax:统一的调用ajax的方法，参数为callback(pageInfo)
-     */
-    /**
-     * 需要注意的事项（无）
-     */
     import { Pagination } from "element-ui"
     export default {
         name: "MyPagination",

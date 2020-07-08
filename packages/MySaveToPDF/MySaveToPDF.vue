@@ -3,33 +3,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项（无）
-     */
-    /**
-     * 组件的监听方法（无）
-     */
-    /**
-     * 组件的方法
-     * saveToPDFFn:将指定dom转为pdf并下载，参数为pdf文档名称和要转的dom
-     * printPDFFn:将指定dom转为pdf后打印（只能在弹出的新窗口打印），参数为要打印的dom
-     */
-    /**
-     * 需要注意的事项
-     * 1.安装依赖
-        npm install --save html2canvas //将页面html转换成图片
-        npm install jspdf --save //将图片生成pdf
-     * 2.使用方法
-         import MySaveToPDF from "@/utils/components/MySaveToPDF";
-         MySaveToPDF.methods.saveToPDFFn('我的模拟实践训练成绩', this.$refs.myTable)
-         MySaveToPDF.methods.printPDFFn(this.$refs.myTable)
-     */
     import html2Canvas from 'html2canvas'
     import JsPDF from 'jspdf'
     export default {

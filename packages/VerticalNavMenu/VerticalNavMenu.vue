@@ -32,69 +32,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * menuList:菜单的数组，例：
-     [
-     {
-            ifDisable: true, //禁用
-            toUrl: 'home', //对应的路由
-            label: '首页', //菜单显示的名称
-            iconClass: '1' //菜单前的图标class，不使用图标不设置此属性。例如el-icon-document
-        },
-     {
-            label: '基础参数维护',
-            iconClass: '2',
-            children: [ //有二级菜单时，子菜单数组，没有不设置此属性
-                {
-                    toUrl: 'interrogation1',
-                    label: '问诊项目'
-                },
-                {
-                    toUrl: 'interrogation2',
-                    label: '问诊项目'
-                },
-                {
-                    toUrl: 'interrogation3',
-                    label: '问诊项目'
-                }
-            ]
-        }
-     ]
-     * width:自定义宽度（带单位）
-     * height:自定义高度，默认为100%（带单位）
-     * bgcColor:背景颜色
-     * fontColor:文字颜色
-     * activeFontColor:选中的文字颜色
-     * activeBgcColor:自定义菜单的选中背景颜色样式
-     * hoverBgcColor:自定义菜单的hover背景颜色样式
-     * itemHeight:菜单的高度，默认为56px
-     * iconSize:图标的大小，默认为18px
-     * iconMarginRight:图标和标题中间的间距，默认为5px
-     * itemPaddingRight:菜单的右边距，默认为20px
-     * itemPaddingLeft:菜单的左边距，默认为20px
-     * subItemPaddingLeft:子菜单的左边距，默认为20px
-     * arrowIconUrl:下拉箭头图标路径，尽量使用require
-     * arrowIconWidth:下拉箭头图标宽度（带单位）
-     * arrowIconHeight:下拉箭头图标高度（带单位）
-     */
-    /**
-     * 组件的监听方法（无）
-     */
-    /**
-     * 组件的方法（无）
-     */
-    /**
-     * 需要注意的事项
-     * 1.菜单的图标使用阿里巴巴矢量库的图标，font-family为font-family: "font_family" !important;
-     * 2.菜单路径使用router中的name
-     */
     import { Menu, MenuItem, Submenu } from "element-ui"
     export default {
         name: "VerticalNavMenu",

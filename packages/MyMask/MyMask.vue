@@ -13,33 +13,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * width:弹出框的宽度
-     * minTop:允许拖拽的最大高度
-     * initTop:自定义初始top值，默认为空，居中
-     */
-    /**
-     * 组件的监听方法（无）
-     */
-    /**
-     * 组件的方法（无）
-     */
-    /**
-     * 需要注意的事项
-     * 1.该组件共有3个插槽，分别为title:标题的dom；closeBtn:关闭按钮的dom；content:内容的dom。使用方法可参考如下：
-     <my-mask :width="width" :min-top="62" class="projectMask">
-     <div slot="title" class="projectMaskTitleText" flex="cross:center">{{title}}</div>
-     <div slot="closeBtn" @click="closeBtnFn" class="closeBtn"></div>
-     <slot slot="content"/>
-     </my-mask>
-     */
     require('scss-flex')
     export default {
         name: "MyMask",

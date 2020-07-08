@@ -11,35 +11,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件
-     * @/utils/components/MyBtn
-     * @/utils/js/main.js
-     */
-    /**
-     * 该组件的配置项
-     * ifCheckPwd:是否检查密码，默认不检查
-     * password:密码
-     * phoneNumber:手机号
-     * fontSize:自定义字体大小，默认为18px
-     * height:自定义高度，默认为48px
-     */
-    /**
-     * 组件的监听方法
-     * sendSms:点击了按钮
-     */
-    /**
-     * 组件的方法
-     * sendSmsSuccess:调接口，之后成功后调用此方法，开始倒计时并且不能点击
-     * sendSmsFail:调接口，之后失败后调用此方法，重置为初始状态
-     */
-    /**
-     * 需要注意的事项
-     * 1.此组件需要在父组件中手动调用组件内的方法使用
-     */
     import Main from 'js-utils-common'
     import MyBtn from '../MyBtn'
     export default {

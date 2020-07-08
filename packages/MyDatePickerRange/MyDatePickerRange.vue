@@ -18,33 +18,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件
-     * @/utils/js/main
-     */
-    /**
-     * 该组件的配置项
-     * format:显示在输入框中的格式，默认为yyyy-MM-dd
-     * initValue:初始值，开始时间和结束时间数组，比如[new Date(), new Date()]
-     * disableMaxDate:禁用的最大日期，默认不禁用，需要禁用时传入new Date()可以解析的字符串
-     * disableMinDate:禁用的最小日期，默认不禁用，需要禁用时传入new Date()可以解析的字符串
-     * width:自定义宽度(带单位)
-     * height:自定义高度，默认为48px
-     * inputHoverBorderColor:输入框在hover时的边框颜色
-     */
-    /**
-     * 组件的监听方法
-     * changeValue:值改变时触发，参数为开始时间和结束时间数组，Date类型
-     */
-    /**
-     * 组件的方法（无）
-     */
-    /**
-     * 需要注意的事项（无）
-     */
     import Main from "js-utils-common"
     import { DatePicker } from "element-ui"
     export default {

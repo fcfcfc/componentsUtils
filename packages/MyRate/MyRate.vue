@@ -12,30 +12,6 @@
   </div>
 </template>
 <script>
-  /**
-   * vue.config.js中需要的配置（无）
-   */
-  /**
-   * 依赖的组件（无）
-   */
-  /**
-   * 该组件的配置项
-   * value:绑定值
-   * disabled:是否为只读，默认值为false
-   * disabledVoidColor:只读时未选中 icon 的颜色，默认为#EFF2F7
-   * color:icon 的颜色，默认为#F7BA2A
-   * allowHalf:是否允许半选，默认值为false
-   */
-  /**
-   * 组件的监听方法
-   * getValue:分值改变时触发，参数为改变后的分值
-   */
-  /**
-   * 组件的方法（无）
-   */
-  /**
-   * 需要注意的事项（无）
-   */
   import { Rate } from 'element-ui'
   export default {
     name: 'MyRate',

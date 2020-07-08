@@ -13,48 +13,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * radioOuterBackgroundColor:选中时外圈的背景颜色（主题色）
-     * ifDisable:是否禁用,默认值为false
-     * circleSize:自定义radio的大小（带单位）
-     * circleInnerSize:自定义选中时内圈的大小（带单位）
-     * circleBorderColor:自定义radio的边框颜色
-     * circleCheckedBorderColor:自定义选中时的radio的边框颜色
-     * circleInnerBackgroundColor:自定义选中时内圈的背景颜色，不设置会在disable状态时变成灰色
-     * circleBackgroundColor:自定义radio的背景颜色，需要配合circleCheckedBackgroundColor使用
-     * circleCheckedBackgroundColor:自定义选中时的radio的背景颜色
-     * showCheckBackground:选中时，是否给选中的元素添加背景颜色，突出显示，默认值为false
-     * spanColor:自定义旁边label的文字颜色
-     * spanColorChecked:自定义选中时旁边label的文字颜色，需要配合spanColor使用
-     * fontSize:自定义旁边label的文字大小（带单位）
-     * ifVertical:是否改为竖向排列，默认值为false
-     * marginRight:自定义radio的margin-right，默认值为30px
-     * paddingLeft:自定义label的padding-right，默认值为6px
-     * marginBottom:自定义radio的margin-bottom，默认值为0
-     * extraInfo:自定义扩展信息，设置后会和选中的 Radio label 值一起返回
-     * initValue:设定一个初始值
-     * labelArr:radio数组，包含的对象为{
-                                        value:radio的value
-                                        text:radio显示的文字
-                                      }
-     */
-    /**
-     * 组件的监听方法
-     * getRadioValue:radio值改变时触发，参数为选中的 Radio label 值；如果设置了extraInfo，参数变为{val:选中值，info:extraInfo设置的值}
-     */
-    /**
-     * 组件的方法（无）
-     */
-    /**
-     * 需要注意的事项（无）
-     */
     import { RadioGroup, Radio } from "element-ui"
     export default {
         name: "MyRadio",

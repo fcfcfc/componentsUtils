@@ -19,41 +19,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * selectActiveItemColor:下拉框（选择每页条数）选中项目的字体颜色，建议设置为主题色，属于项目通用配置，会影响项目中其它下拉框
-     * inputHoverBorderColor:输入框在hover时的边框颜色
-     * ifDisable:是否禁用,默认值为false
-     * placeholder:input提示信息
-     * options:下拉选项数组，包含的对象为{
-                                           label:显示的文字
-                                           value:对应的值
-                                       }
-     * clearable:是否显示可以清空选项的小图标，默认值为false
-     * initValue:初始值
-     * width:自定义宽度，默认为100%
-     * height:自定义高度，默认为48px
-     * paddingRight:自定义input中的右边距值,
-     * paddingLeft:自定义input中的左边距值
-     * hideBorder:是否隐藏border
-     * extraInfo:自定义扩展信息，设置后会和选中的 Radio label 值一起返回
-     */
-    /**
-     * 组件的监听方法
-     * changeValue:值改变时触发，参数为options中选中的对象，如果设置了extraInfo，参数变为{selectObj:选中值，info:extraInfo设置的值}
-     */
-    /**
-     * 组件的方法（无）
-     */
-    /**
-     * 需要注意的事项（无）
-     */
     import { Select, Option } from "element-ui"
     export default {
         name: "MySelect",

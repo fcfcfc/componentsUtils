@@ -1,13 +1,11 @@
 <template>
     <div class="myInput" :style="textareaAutoHeightByContent?'position: relative;':''" :class="newClass">
-        <pre v-if="textareaAutoHeightByContent" :style="{
+        <pre v-if="textareaAutoHeightByContent" class="preDom" :style="{
             'padding-top': paddingTop,
             'padding-Bottom': paddingBottom,
             'padding-left': paddingLeft,
             'padding-right': paddingRight,
-            'lineHeight': '1.6',
-            'min-height': textareaMinHeight,
-            'margin': '0'
+            'min-height': textareaMinHeight
         }">{{input}}</pre>
         <el-input
                 :autocomplete="autoComplete"
@@ -38,51 +36,6 @@
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * initValue:初始值
-     * ifDisabled:是否禁用,默认值为false
-     * placeholder:input提示信息
-     * width:自定义宽度(带单位)
-     * height:自定义高度，默认为48px
-     * paddingLeft:自定义input内的padding-left（带单位）
-     * paddingRight:自定义input内的padding-right（带单位）
-     * type:input类型，text，textarea 和其他 原生 input 的 type 值，默认为text
-     * maxlength:原生属性，最大输入长度
-     * rows:输入框行数，只对 type="textarea" 有效
-     * textCenterInput:input内的文字是否居中显示，默认为false
-     * fontColor:自定义字体颜色
-     * disableEnterEvent:是否禁用回车监听，默认不禁用
-     * autoComplete:设置为new-password可以解决Firefox上密码输入框会自动填充密码的问题
-     * extraInfo:自定义扩展信息，设置后会和选中的 Radio label 值一起返回，如果设置了extraInfo，参数变为{value:选中值，info:extraInfo设置的值}
-     * ifDisableBorder:是否不显示边框，默认显示
-     * ifDisableClearIcon:是否禁用删除小图标，默认显示
-     * textareaUseHeight:textarea也使用height参数控制高度，默认不使用
-     * backgroundColor:自定义背景颜色，默认是#FFFFFF
-     * inputHoverBorderColor:输入框在hover时的边框颜色
-     * ifAutofocus:原生属性，自动获取焦点
-     */
-    /**
-     * 组件的监听方法
-     * changeValue:值改变时触发，参数为input中的值
-     * enterEvent:监听键盘上的回车事件
-     * blurEvent:监听失去焦点事件
-     * focusEvent:监听获得焦点事件
-     * changeEvent:仅在输入框失去焦点或用户按下回车时触发。注意！因为在该监听中做了trim处理后更新了input值，所以若要在此监听取input值，需要根据情况重新做trim处理
-     */
-    /**
-     * 组件的方法
-     * focusFn:使 input 获取焦点
-     */
-    /**
-     * 需要注意的事项（无）
-     */
     import { Input } from "element-ui"
     export default {
         name: "MyInput",
@@ -283,6 +236,12 @@
         &.disableClearIcon /deep/ .el-input__suffix {
             display: none;
         }
+        .preDom {
+            line-height: 1.6;
+            margin: 0;
+            word-break: break-all; /*解决火狐不自动换行的问题*/
+            white-space: pre-wrap; /*解决火狐不自动换行的问题*/
+        }
         /deep/ .el-textarea {
             font-size: inherit;
             &>textarea {
@@ -307,6 +266,7 @@
                 padding: 12px 15px;
                 line-height: 1.6;
                 border-color: #cdcdcd;
+                margin: 0; /*去掉火狐下的默认样式*/
             }
         }
         /deep/ .el-textarea.is-disabled,
@@ -340,6 +300,7 @@
                 border-color: #cdcdcd;
                 color: #333333;
                 height: inherit;
+                margin: 0; /*去掉火狐下的默认样式*/
             }
         }
         /deep/ input::-webkit-outer-spin-button,

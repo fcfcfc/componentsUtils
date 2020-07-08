@@ -64,16 +64,19 @@
             <div>18.MyDialog</div>
         </my-dialog>
         <div>19.MyInput</div>
-        <my-input height="100%"
-                  :disableEnterEvent="true"
-                  :textarea-use-height="true"
-                  :ifDisableClearIcon="true"
-                  type="textarea"
-                  paddingLeft="15px"
-                  fontColor="#666666"
-                  :maxLength="500"
-                  paddingRight="15px"
-                  :ifDisableBorder="false"/>
+        <div style="border:1px solid #000;width: 50%;">
+            <my-input :ifDisableClearIcon="true"
+                      :disableEnterEvent="true"
+                      paddingLeft="15px"
+                      fontColor="#666666"
+                      :maxlength="500"
+                      paddingRight="15px"
+                      paddingTop="9px"
+                      paddingBottom="9px"
+                      textareaMinHeight="40px"
+                      :textareaAutoHeightByContent="true"
+                      :ifDisableBorder="true"/>
+        </div>
         <div>20.MyPagination</div>
         <my-pagination :total="25" select-active-item-color="yellow" pagination-bgc-active-color="blue" pagination-border-hover-color="red"/>
         <div>21.MySelect</div>

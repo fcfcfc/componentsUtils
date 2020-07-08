@@ -8,28 +8,6 @@
     </div>
 </template>
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * color:自定义进度条背景色（会覆盖 status 状态颜色）
-     * strokeWidth:进度条的宽度值（px），默认值为6
-     * percentage:百分比，可选值为0-100，默认为0
-     * showText:是否显示进度条文字内容，默认值为true
-     */
-    /**
-     * 组件的监听方法（无）
-     */
-    /**
-     * 组件的方法（无）
-     */
-    /**
-     * 需要注意的事项（无）
-     */
     import {Progress} from "element-ui"
     export default {
         name: 'MyProgress',
