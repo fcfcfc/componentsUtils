@@ -1206,6 +1206,7 @@ freeMode | Boolean | false（普通模式） | 普通模式：slide滑动时只�
 slideWidth | String | '' | 强制改变slide的宽度
 useScrollbar | Boolean | false（不启用） | 是否启用滚动条
 scrollbarDragBgc | String | 'rgba(0, 0, 0, 0.5)' | 滚动条中拖动块的背景颜色
+scrollbarBgc | String | 'rgba(0, 0, 0, 0.1)' | 滚动条的背景颜色
 ###### 监听方法  
 **_getCurrentActiveIndex_**：监听activeIndex值的变化，返回activeIndex
 ###### 组件方法  

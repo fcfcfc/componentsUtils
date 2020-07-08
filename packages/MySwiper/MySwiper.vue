@@ -35,6 +35,10 @@
                 type: Boolean,
                 default: false
             },
+            scrollbarBgc: {
+                type: String,
+                default: 'rgba(0, 0, 0, 0.1)'
+            },
             scrollbarDragBgc: {
                 type: String,
                 default: 'rgba(0, 0, 0, 0.5)'
@@ -75,8 +79,10 @@
             }
         },
         mounted() {
+            let swiperScrollbar = document.getElementsByClassName('swiper-scrollbar') || [];
             let swiperScrollbarDrag = document.getElementsByClassName('swiper-scrollbar-drag') || [];
-            if(swiperScrollbarDrag.length > 0) swiperScrollbarDrag[0].style.backgroundColor = this.scrollbarDragBgc
+            if(swiperScrollbarDrag.length > 0) swiperScrollbarDrag[0].style.backgroundColor = this.scrollbarDragBgc;
+            if(swiperScrollbar.length > 0) swiperScrollbar[0].style.backgroundColor = this.scrollbarBgc
         }
     }
 </script>
