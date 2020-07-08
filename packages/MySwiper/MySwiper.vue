@@ -3,34 +3,11 @@
         <swiper-slide :style="{'width': slideWidth}" v-for="(item, index) in slidesArr" :key="item.id">
             <slot :itemInfo="{item, index}"/>
         </swiper-slide>
+        <div class="swiper-scrollbar" v-if="useScrollbar" slot="scrollbar"></div>
     </swiper>
 </template>
 
 <script>
-    /**
-     * vue.config.js中需要的配置（无）
-     */
-    /**
-     * 依赖的组件（无）
-     */
-    /**
-     * 该组件的配置项
-     * slidesArr:slide数组，插槽为<template v-slot:default="slotProps"></template>，slotProps.itemInfo.item为对应的数据，slotProps.itemInfo.index为对应的下标
-     * slidesPerView:设置slider容器能够同时显示的slides数量，可设的值为number or auto，默认1
-     */
-    /**
-     * 组件的监听方法
-     * getCurrentActiveIndex:监听activeIndex值的变化，返回activeIndex
-     */
-    /**
-     * 组件的方法
-     * slideToIndex:滑动到指定index
-     */
-    /**
-     * 需要注意的事项
-     * 1.需要安装以下依赖
-     npm install swiper vue-awesome-swiper --save
-     */
     import 'swiper/css/swiper.css'
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
     export default {
@@ -51,6 +28,10 @@
                 default: 1
             },
             freeMode: {
+                type: Boolean,
+                default: false
+            },
+            useScrollbar: {
                 type: Boolean,
                 default: false
             },
@@ -81,6 +62,12 @@
             },
             updateSize() {
                 this.swiper.updateSize()
+            }
+        },
+        beforeMount() {
+            if(this.useScrollbar) this.swiperOption.scrollbar = {
+                el: '.swiper-scrollbar',
+                hide: true
             }
         }
     }

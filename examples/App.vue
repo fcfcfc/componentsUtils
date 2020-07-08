@@ -36,7 +36,13 @@
         <div>14.MySendMessageBox</div>
         <my-send-message-box/>
         <div>15.MySwiper</div>
-        <my-swiper ref="mySwiperDom" style="width:50%" :free-mode="true" slide-width="auto" class="swiperStyle" :slidesArr="[{}]" :slidesPerView="'auto'">
+        <my-swiper ref="mySwiperDom" style="width:50%"
+                   :free-mode="true"
+                   slide-width="auto"
+                   class="swiperStyle"
+                   :use-scrollbar="true"
+                   :slidesArr="[{}]"
+                   :slidesPerView="'auto'">
             <div flex="cross:center">
                 <div v-for="(item, index) in caseStatusList"
                      flex="cross:center"
