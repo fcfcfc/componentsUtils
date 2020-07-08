@@ -35,6 +35,10 @@
                 type: Boolean,
                 default: false
             },
+            scrollbarDragBgc: {
+                type: String,
+                default: 'rgba(0, 0, 0, 0.5)'
+            },
             slideWidth: {
                 type: String,
                 default: ''
@@ -69,6 +73,10 @@
                 el: '.swiper-scrollbar',
                 hide: true
             }
+        },
+        mounted() {
+            let swiperScrollbarDrag = document.getElementsByClassName('swiper-scrollbar-drag') || [];
+            if(swiperScrollbarDrag.length > 0) swiperScrollbarDrag[0].style.backgroundColor = this.scrollbarDragBgc
         }
     }
 </script>

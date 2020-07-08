@@ -41,6 +41,7 @@
                    slide-width="auto"
                    class="swiperStyle"
                    :use-scrollbar="true"
+                   scrollbar-drag-bgc="red"
                    :slidesArr="[{}]"
                    :slidesPerView="'auto'">
             <div flex="cross:center">

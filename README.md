@@ -1205,6 +1205,7 @@ slidesPerView | Number | 1 | 设置slider容器能够同时显示的slides数量
 freeMode | Boolean | false（普通模式） | 普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动可能不止一格且不会贴合。
 slideWidth | String | '' | 强制改变slide的宽度
 useScrollbar | Boolean | false（不启用） | 是否启用滚动条
+scrollbarDragBgc | String | 'rgba(0, 0, 0, 0.5)' | 滚动条中拖动块的背景颜色
 ###### 监听方法  
 **_getCurrentActiveIndex_**：监听activeIndex值的变化，返回activeIndex
 ###### 组件方法  
