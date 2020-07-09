@@ -1204,6 +1204,7 @@ slidesArr | Array | [] | slide数组
 slidesPerView | Number | 1 | 设置slider容器能够同时显示的slides数量，可设的值为number值或者auto
 freeMode | Boolean | false（普通模式） | 普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动可能不止一格且不会贴合。
 slideWidth | String | '' | 强制改变slide的宽度
+scrollbarIndex | String | '' | 滚动条index，页面中有多个swiper时需给各个组件设置index
 useScrollbar | Boolean | false（不启用） | 是否启用滚动条
 scrollbarDragBgc | String | 'rgba(0, 0, 0, 0.5)' | 滚动条中拖动块的背景颜色
 scrollbarBgc | String | 'rgba(0, 0, 0, 0.1)' | 滚动条的背景颜色

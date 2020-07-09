@@ -3,7 +3,7 @@
         <swiper-slide :style="{'width': slideWidth}" v-for="(item, index) in slidesArr" :key="item.id">
             <slot :itemInfo="{item, index}"/>
         </swiper-slide>
-        <div class="swiper-scrollbar" v-if="useScrollbar" slot="scrollbar"></div>
+        <div class="swiper-scrollbar" :id="scrollbarId" v-if="useScrollbar" slot="scrollbar"></div>
     </swiper>
 </template>
 
@@ -46,6 +46,10 @@
             slideWidth: {
                 type: String,
                 default: ''
+            },
+            scrollbarIndex: {
+                type: String,
+                default: ''
             }
         },
         computed: {
@@ -55,6 +59,7 @@
         },
         data() {
             return {
+                scrollbarId: `scrollbarId${new Date().getTime()}_${this.scrollbarIndex}`,
                 swiperOption: {
                     freeMode: this.freeMode,
                     slidesPerView: this.slidesPerView,
@@ -79,10 +84,18 @@
             }
         },
         mounted() {
-            let swiperScrollbar = document.getElementsByClassName('swiper-scrollbar') || [];
-            let swiperScrollbarDrag = document.getElementsByClassName('swiper-scrollbar-drag') || [];
-            if(swiperScrollbarDrag.length > 0) swiperScrollbarDrag[0].style.backgroundColor = this.scrollbarDragBgc;
-            if(swiperScrollbar.length > 0) swiperScrollbar[0].style.backgroundColor = this.scrollbarBgc
+            let swiperScrollbar = document.getElementById(this.scrollbarId) || {};
+            let swiperScrollbarDrag = swiperScrollbar.firstChild || {};
+            if(swiperScrollbar.style) swiperScrollbar.style.backgroundColor = this.scrollbarBgc;
+            if(swiperScrollbarDrag.style) swiperScrollbarDrag.style.backgroundColor = this.scrollbarDragBgc;
+            this.$nextTick(() => {
+                this.swiper.$el[0].addEventListener('mouseenter', () => {
+                    if(swiperScrollbar.style) swiperScrollbar.style.opacity = 1;
+                });
+                this.swiper.$el[0].addEventListener('mouseleave', () => {
+                    if(swiperScrollbar.style) swiperScrollbar.style.opacity = 0;
+                })
+            })
         }
     }
 </script>

@@ -56,6 +56,26 @@
                 </div>
             </div>
         </my-swiper>
+        <my-swiper ref="mySwiperDom" style="width:50%"
+                   :free-mode="true"
+                   slide-width="auto"
+                   class="swiperStyle"
+                   :use-scrollbar="true"
+                   scrollbar-drag-bgc="red"
+                   :slidesArr="[{}]"
+                   :slidesPerView="'auto'">
+            <div flex="cross:center">
+                <div v-for="(item, index) in caseStatusList"
+                     flex="cross:center"
+                     :key="item.id">
+                    <div class="caseStatusItem" flex="main-cross:center" :class="{'ifSelected':selectedStatusId===item.id}">
+                        <div class="itemIndex" flex="main-cross:center">{{index}}</div>
+                        <div class="itemText">{{item.label}}</div>
+                    </div>
+                    <div v-if="index!==caseStatusList.length-1" class="caseStatusLine"></div>
+                </div>
+            </div>
+        </my-swiper>
         <div>16.MyVideo</div>
         <my-video/>
         <div>17.MyCascade</div>
