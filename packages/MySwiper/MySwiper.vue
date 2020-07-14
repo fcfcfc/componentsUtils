@@ -89,12 +89,10 @@
             if(swiperScrollbar.style) swiperScrollbar.style.backgroundColor = this.scrollbarBgc;
             if(swiperScrollbarDrag.style) swiperScrollbarDrag.style.backgroundColor = this.scrollbarDragBgc;
             this.$nextTick(() => {
-                this.swiper.$el[0].addEventListener('mouseenter', () => {
-                    if(swiperScrollbar.style) swiperScrollbar.style.opacity = 1;
-                });
-                this.swiper.$el[0].addEventListener('mouseleave', () => {
-                    if(swiperScrollbar.style) swiperScrollbar.style.opacity = 0;
-                })
+                if(swiperScrollbar.style) {
+                    this.swiper.$el[0].addEventListener('mouseenter', () => swiperScrollbar.style.opacity = 1);
+                    this.swiper.$el[0].addEventListener('mouseleave', () => swiperScrollbar.style.opacity = 0)
+                }
             })
         }
     }
