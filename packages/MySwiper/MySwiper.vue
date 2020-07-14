@@ -89,7 +89,7 @@
             if(swiperScrollbar.style) swiperScrollbar.style.backgroundColor = this.scrollbarBgc;
             if(swiperScrollbarDrag.style) swiperScrollbarDrag.style.backgroundColor = this.scrollbarDragBgc;
             this.$nextTick(() => {
-                if(swiperScrollbar.style) {
+                if(swiperScrollbar.style && this.swiper) {
                     this.swiper.$el[0].addEventListener('mouseenter', () => swiperScrollbar.style.opacity = 1);
                     this.swiper.$el[0].addEventListener('mouseleave', () => swiperScrollbar.style.opacity = 0)
                 }
