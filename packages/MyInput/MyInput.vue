@@ -204,7 +204,7 @@
                 this.$emit('enterEvent')
             },
             blurEvent() {
-                this.$emit('blurEvent')
+                this.$emit('blurEvent', this.info)
             },
             focusEvent() {
                 this.$emit('focusEvent')

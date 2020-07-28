@@ -357,7 +357,7 @@ inputHoverBorderColor | String | '' | 输入框在hover时的边框颜色
 ###### 监听方法  
 1. **_changeValue_**：输入框的input事件，参数为input中的值，如果设置了extraInfo，参数变为{value:输入框值，info:extraInfo设置的值}
 2. **_enterEvent_**：监听键盘上的回车事件
-3. **_blurEvent_**：监听失去焦点事件
+3. **_blurEvent_**：监听失去焦点事件，如果设置了extraInfo，会返回extraInfo
 4. **_focusEvent_**：监听获得焦点事件
 5. **_changeEvent_**：输入框的change事件。注意！因为在该监听中做了trim处理后更新了input值，所以若要在此监听取input值，需要根据情况重新做trim处理
 ###### 组件方法  
